@@ -249,7 +249,7 @@
 			$('#vmap').vectorMap('set', 'colors', {ms: illegalFill});
 		}
 		///Missouri
-		if(citizen === 'usCitizen' && over21 === 'over18') {
+		if(citizen === 'usCitizen' && (over21 === 'over18') || (over21 === 'over21')) {
 			$('#vmap').vectorMap('set', 'colors', {mo: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {mo: illegalFill});
