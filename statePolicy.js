@@ -454,7 +454,7 @@
 			$('#vmap').vectorMap('set', 'colors', {wi: illegalFill});
 		}
 		///Wyoming
-		if(residency === 'wy')
+		if((residency === 'wy') || permits.length > 0)
 		{
 			$('#vmap').vectorMap('set', 'colors', {wy: permittedFill});
 		} else {
