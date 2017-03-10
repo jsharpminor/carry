@@ -46,122 +46,122 @@
 			$('#vmap').vectorMap('set', 'colors', {ar: illegalFill});
 		}
 		///California
-		if(permits.includes('CA') && residency === 'CA') {
+		if(permits.includes('ca') && residency === 'ca') {
 			$('#vmap').vectorMap('set', 'colors', {ca: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {ca: illegalFill});
 		}
 		///Colorado
-		if ((permits.includes('AL') && residency === 'AL') ||
-			(permits.includes('AK') && residency === 'AK') || 
-			(permits.includes('AZ') && residency === 'AZ') || 
-			(permits.includes('AR') && residency === 'AR') || 
-			(permits.includes('CO') && residency === 'CO') || 
-			(permits.includes('DE') && residency === 'DE') || 
-			(permits.includes('FL') && residency === 'FL') || 
-			(permits.includes('GA') && residency === 'GA') || 
-			(permits.includes('ID') && residency === 'ID') || 
-			(permits.includes('IN') && residency === 'IN') || 
-			(permits.includes('IA') && residency === 'IA') || 
-			(permits.includes('KS') && residency === 'KS') || 
-			(permits.includes('KY') && residency === 'KY') || 
-			(permits.includes('LA') && residency === 'LA') || 
-			(permits.includes('MI') && residency === 'MI') || 
-			(permits.includes('MS') && residency === 'MS') || 
-			(permits.includes('MO') && residency === 'MO') || 
-			(permits.includes('MT') && residency === 'MT') || 
-			(permits.includes('NE') && residency === 'NE') || 
-			(permits.includes('NH') && residency === 'NH') || 
-			(permits.includes('NM') && residency === 'NM') || 
-			(permits.includes('NC') && residency === 'NC') || 
-			(permits.includes('ND') && residency === 'ND') || 
-			(permits.includes('OH') && residency === 'OH') || 
-			(permits.includes('OK') && residency === 'OK') || 
-			(permits.includes('PA') && residency === 'PA') || 
-			(permits.includes('SD') && residency === 'SD') || 
-			(permits.includes('TN') && residency === 'TN') || 
-			(permits.includes('TX') && residency === 'TX') || 
-			(permits.includes('UT') && residency === 'UT') || 
-			(permits.includes('VA') && residency === 'VA') || 
-			(permits.includes('WV') && residency === 'WV') || 
-			(permits.includes('WI') && residency === 'WI') || 
-			(permits.includes('WY') && residency === 'WY')) {
+		if ((permits.includes('al') && residency === 'al') ||
+			(permits.includes('ak') && residency === 'ak') || 
+			(permits.includes('az') && residency === 'az') || 
+			(permits.includes('ar') && residency === 'ar') || 
+			(permits.includes('co') && residency === 'co') || 
+			(permits.includes('de') && residency === 'de') || 
+			(permits.includes('fl') && residency === 'fl') || 
+			(permits.includes('ga') && residency === 'ga') || 
+			(permits.includes('id') && residency === 'id') || 
+			(permits.includes('in') && residency === 'in') || 
+			(permits.includes('ia') && residency === 'ia') || 
+			(permits.includes('ks') && residency === 'ks') || 
+			(permits.includes('ky') && residency === 'ky') || 
+			(permits.includes('la') && residency === 'la') || 
+			(permits.includes('mi') && residency === 'mi') || 
+			(permits.includes('ms') && residency === 'ms') || 
+			(permits.includes('mo') && residency === 'mo') || 
+			(permits.includes('mt') && residency === 'mt') || 
+			(permits.includes('ne') && residency === 'ne') || 
+			(permits.includes('nh') && residency === 'nh') || 
+			(permits.includes('nm') && residency === 'nm') || 
+			(permits.includes('nc') && residency === 'nc') || 
+			(permits.includes('nd') && residency === 'nd') || 
+			(permits.includes('oh') && residency === 'oh') || 
+			(permits.includes('ok') && residency === 'ok') || 
+			(permits.includes('pa') && residency === 'pa') || 
+			(permits.includes('sd') && residency === 'sd') || 
+			(permits.includes('tn') && residency === 'tn') || 
+			(permits.includes('tx') && residency === 'tx') || 
+			(permits.includes('ut') && residency === 'ut') || 
+			(permits.includes('va') && residency === 'va') || 
+			(permits.includes('wv') && residency === 'wv') || 
+			(permits.includes('wi') && residency === 'wi') || 
+			(permits.includes('wy') && residency === 'wy')) {
 			$('#vmap').vectorMap('set', 'colors', {co: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {co: illegalFill});
 		}
 		///Connecticut
-		if(permits.includes('CT')) {
+		if(permits.includes('ct')) {
 			$('#vmap').vectorMap('set', 'colors', {ct: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {ct: illegalFill});
 		}
 		///Delaware
-		if (findOne(['AK', 'AR', 'AZ', 'CO', 'DE', 'FL', 'ID', 'KY', 'ME', 'MI',
-					 'MO', 'NM', 'NC', 'ND', 'OH', 'OK', 'SD', 'TN', 'TX', 'UT',
-					 'WV'], permits)) {
+		if (findOne(['ak', 'ar', 'az', 'co', 'de', 'fl', 'id', 'ky', 'me', 'mi',
+					 'mo', 'nm', 'nc', 'nd', 'oh', 'ok', 'sd', 'tn', 'tx', 'ut',
+					 'wv'], permits)) {
 			$('#vmap').vectorMap('set', 'colors', {de: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {de: illegalFill});
 		}
 		///District of Columbia
-		if(permits.includes('DC')) {
+		if(permits.includes('dc')) {
 			$('#vmap').vectorMap('set', 'colors', {dc: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {dc: illegalFill});
 		}
 		///Florida
-		if ((permits.includes('AL') && residency === 'AL') ||
-			(permits.includes('AK') && residency === 'AK') || 
-			(permits.includes('AZ') && residency === 'AZ') || 
-			(permits.includes('AR') && residency === 'AR') || 
-			(permits.includes('CO') && residency === 'CO') || 
-			(permits.includes('DE') && residency === 'DE') || 
-			(permits.includes('FL') && residency === 'FL') || 
-			(permits.includes('GA') && residency === 'GA') || 
-			(permits.includes('ID') && residency === 'ID') || 
-			(permits.includes('IN') && residency === 'IN') || 
-			(permits.includes('IA') && residency === 'IA') || 
-			(permits.includes('KS') && residency === 'KS') || 
-			(permits.includes('KY') && residency === 'KY') || 
-			(permits.includes('LA') && residency === 'LA') || 
-			(permits.includes('ME') && residency === 'ME') || 
-			(permits.includes('MI') && residency === 'MI') || 
-			(permits.includes('MS') && residency === 'MS') || 
-			(permits.includes('MO') && residency === 'MO') || 
-			(permits.includes('MT') && residency === 'MT') || 
-			(permits.includes('NE') && residency === 'NE') || 
-			(permits.includes('NV') && residency === 'NV') || 
-			(permits.includes('NH') && residency === 'NH') || 
-			(permits.includes('NM') && residency === 'NM') || 
-			(permits.includes('NC') && residency === 'NC') || 
-			(permits.includes('ND') && residency === 'ND') || 
-			(permits.includes('OH') && residency === 'OH') || 
-			(permits.includes('OK') && residency === 'OK') || 
-			(permits.includes('PA') && residency === 'PA') || 
-			(permits.includes('SC') && residency === 'SC') || 
-			(permits.includes('SD') && residency === 'SD') || 
-			(permits.includes('TN') && residency === 'TN') || 
-			(permits.includes('TX') && residency === 'TX') || 
-			(permits.includes('UT') && residency === 'UT') || 
-			(permits.includes('VA') && residency === 'VA') || 
-			(permits.includes('WV') && residency === 'WV') || 
-			(permits.includes('WY') && residency === 'WY')) {
+		if ((permits.includes('al') && residency === 'al') ||
+			(permits.includes('ak') && residency === 'ak') || 
+			(permits.includes('az') && residency === 'az') || 
+			(permits.includes('ar') && residency === 'ar') || 
+			(permits.includes('co') && residency === 'co') || 
+			(permits.includes('de') && residency === 'de') || 
+			(permits.includes('fl') && residency === 'fl') || 
+			(permits.includes('ga') && residency === 'ga') || 
+			(permits.includes('id') && residency === 'id') || 
+			(permits.includes('in') && residency === 'in') || 
+			(permits.includes('ia') && residency === 'ia') || 
+			(permits.includes('ks') && residency === 'ks') || 
+			(permits.includes('ky') && residency === 'ky') || 
+			(permits.includes('la') && residency === 'la') || 
+			(permits.includes('me') && residency === 'me') || 
+			(permits.includes('mi') && residency === 'mi') || 
+			(permits.includes('ms') && residency === 'ms') || 
+			(permits.includes('mo') && residency === 'mo') || 
+			(permits.includes('mt') && residency === 'mt') || 
+			(permits.includes('ne') && residency === 'ne') || 
+			(permits.includes('nv') && residency === 'nv') || 
+			(permits.includes('nh') && residency === 'nh') || 
+			(permits.includes('nm') && residency === 'nm') || 
+			(permits.includes('nc') && residency === 'nc') || 
+			(permits.includes('nd') && residency === 'nd') || 
+			(permits.includes('oh') && residency === 'oh') || 
+			(permits.includes('ok') && residency === 'ok') || 
+			(permits.includes('pa') && residency === 'pa') || 
+			(permits.includes('sc') && residency === 'sc') || 
+			(permits.includes('sd') && residency === 'sd') || 
+			(permits.includes('tn') && residency === 'tn') || 
+			(permits.includes('tx') && residency === 'tx') || 
+			(permits.includes('ut') && residency === 'ut') || 
+			(permits.includes('va') && residency === 'va') || 
+			(permits.includes('wv') && residency === 'wv') || 
+			(permits.includes('wy') && residency === 'wy')) {
 			$('#vmap').vectorMap('set', 'colors', {fl: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {fl: illegalFill});
 		}
 		///Georgia
-		if (findOne(['AL', 'AK', 'AZ', 'AR', 'CO', 'FL', 'GA', 'ID', 'IA', 'IN',
-					 'KS', 'KY', 'LA', 'ME', 'MI', 'MO', 'MS', 'MT', 'NH', 'NC',
-					 'ND', 'OH', 'OK', 'PA', 'SC', 'SD', 'TN', 'TX', 'UT', 'WI',
-					 'WV', 'WY'], permits)) {
+		if (findOne(['al', 'ak', 'az', 'ar', 'co', 'fl', 'ga', 'id', 'ia', 'in',
+					 'ks', 'ky', 'la', 'me', 'mi', 'mo', 'ms', 'mt', 'nh', 'nc',
+					 'nd', 'oh', 'ok', 'pa', 'sc', 'sd', 'tn', 'tx', 'ut', 'wi',
+					 'wv', 'wy'], permits)) {
 			$('#vmap').vectorMap('set', 'colors', {ga: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {ga: illegalFill});
 		}
 		///Hawaii
-		if(permits.includes('HI')) {
+		if(permits.includes('hi')) {
 			$('#vmap').vectorMap('set', 'colors', {hi: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {hi: illegalFill});
@@ -173,7 +173,7 @@
 			$('#vmap').vectorMap('set', 'colors', {id: illegalFill});
 		}
 		///Illinois
-		if(permits.includes('IL')) {
+		if(permits.includes('il')) {
 			$('#vmap').vectorMap('set', 'colors', {il: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {il: illegalFill});
@@ -203,10 +203,10 @@
 			$('#vmap').vectorMap('set', 'colors', {ky: illegalFill});
 		}
 		///Louisiana
-		if (findOne(['AL', 'AK', 'AZ', 'AR', 'CO', 'FL', 'GA', 'ID', 'IA', 'IN',
-					 'KS', 'KY', 'LA', 'ME', 'MI', 'MO', 'MS', 'MN', 'MT', 'NE',
-					 'NV', 'NH', 'NM', 'NC', 'ND', 'OH', 'OK', 'PA', 'SC', 'SD',
-					 'TN', 'TX', 'UT', 'VA', 'WA', 'WI', 'WV', 'WY'], permits)) {
+		if (findOne(['al', 'ak', 'az', 'ar', 'co', 'fl', 'ga', 'id', 'ia', 'in',
+					 'ks', 'ky', 'la', 'me', 'mi', 'mo', 'ms', 'mn', 'mt', 'ne',
+					 'nv', 'nh', 'nm', 'nc', 'nd', 'oh', 'ok', 'pa', 'sc', 'sd',
+					 'tn', 'tx', 'ut', 'va', 'wa', 'wi', 'wv', 'wy'], permits)) {
 			$('#vmap').vectorMap('set', 'colors', {la: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {la: illegalFill});
@@ -218,13 +218,13 @@
 			$('#vmap').vectorMap('set', 'colors', {me: illegalFill});
 		}
 		///Maryland
-		if(permits.includes('MD')) {
+		if(permits.includes('md')) {
 			$('#vmap').vectorMap('set', 'colors', {md: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {md: illegalFill});
 		}
 		///Massachusetts
-		if(permits.includes('MA')) {
+		if(permits.includes('ma')) {
 			$('#vmap').vectorMap('set', 'colors', {ma: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {ma: illegalFill});
@@ -236,8 +236,8 @@
 			$('#vmap').vectorMap('set', 'colors', {mi: illegalFill});
 		}
 		///Minnesota
-		if (findOne(['AR', 'DE', 'ID', 'IL', 'KS', 'KY', 'LA', 'MI', 'MN', 'NV',
-					 'NJ', 'NM', 'ND', 'RI', 'SC', 'SD'], permits)) {
+		if (findOne(['ar', 'de', 'id', 'il', 'ks', 'ky', 'la', 'mi', 'mn', 'nv',
+					 'nj', 'nm', 'nd', 'ri', 'sc', 'sd'], permits)) {
 			$('#vmap').vectorMap('set', 'colors', {mn: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {mn: illegalFill});
@@ -255,30 +255,30 @@
 			$('#vmap').vectorMap('set', 'colors', {mo: illegalFill});
 		}
 		///Montana
-		if (findOne(['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'FL', 'GA', 'ID',
-					 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'MD', 'MA', 'MI', 'MN',
-					 'MO', 'MS', 'MT', 'NE', 'NV', 'NJ', 'NM', 'NY', 'NC', 'ND',
-					 'OH', 'OK', 'OR', 'PA', 'SC', 'SD', 'TN', 'TX', 'UT', 'VA',
-					 'WA', 'WI', 'WV', 'WY'], permits)) {
+		if (findOne(['al', 'ak', 'az', 'ar', 'ca', 'co', 'ct', 'fl', 'ga', 'id',
+					 'il', 'in', 'ia', 'ks', 'ky', 'la', 'md', 'ma', 'mi', 'mn',
+					 'mo', 'ms', 'mt', 'ne', 'nv', 'nj', 'nm', 'ny', 'nc', 'nd',
+					 'oh', 'ok', 'or', 'pa', 'sc', 'sd', 'tn', 'tx', 'ut', 'va',
+					 'wa', 'wi', 'wv', 'wy'], permits)) {
 			$('#vmap').vectorMap('set', 'colors', {mt: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {mt: illegalFill});
 		}
 		///Nebraska
-		if (findOne(['AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DC', 'FL', 'HI', 'ID',
-					 'IA', 'IL', 'KS', 'KY', 'LA', 'ME', 'MI', 'MN', 'MO', 'MT',
-					 'NE', 'NV', 'NJ', 'NM', 'NC', 'ND', 'OH', 'OK', 'OR', 'RI',
-					 'SC', 'SD', 'TN', 'TX', 'UT', 'VA', 'WA', 'WI', 'WV',
-					 'WY'], permits)) {
+		if (findOne(['ak', 'az', 'ar', 'ca', 'co', 'ct', 'dc', 'fl', 'hi', 'id',
+					 'ia', 'il', 'ks', 'ky', 'la', 'me', 'mi', 'mn', 'mo', 'mt',
+					 'ne', 'nv', 'nj', 'nm', 'nc', 'nd', 'oh', 'ok', 'or', 'ri',
+					 'sc', 'sd', 'tn', 'tx', 'ut', 'va', 'wa', 'wi', 'wv',
+					 'wy'], permits)) {
 			$('#vmap').vectorMap('set', 'colors', {ne: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {ne: illegalFill});
 		}
 		///Nevada
-		if (findOne(['AK', 'AZ', 'AR', 'FL', 'ID', 'IL', 'KS', 'KY', 'LA', 'MA',
-					 'MI', 'MN', 'MS', 'MT', 'NE', 'NV', 'NM', 'NC', 'ND', 'OH',
-					 'OK', 'SC', 'SD', 'TN', 'TX', 'UT', 'VA', 'WI', 'WV',
-					 'WY'], permits)) {
+		if (findOne(['ak', 'az', 'ar', 'fl', 'id', 'il', 'ks', 'ky', 'la', 'ma',
+					 'mi', 'mn', 'ms', 'mt', 'ne', 'nv', 'nm', 'nc', 'nd', 'oh',
+					 'ok', 'sc', 'sd', 'tn', 'tx', 'ut', 'va', 'wi', 'wv',
+					 'wy'], permits)) {
 			$('#vmap').vectorMap('set', 'colors', {nv: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {nv: illegalFill});
@@ -290,21 +290,21 @@
 			$('#vmap').vectorMap('set', 'colors', {nh: illegalFill});
 		}
 		///New Jersey
-		if(permits.includes('NJ')) {
+		if(permits.includes('nj')) {
 			$('#vmap').vectorMap('set', 'colors', {nj: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {nj: illegalFill});
 		}
 		///New Mexico
-		if (findOne(['AK', 'AZ', 'AR', 'CO', 'DE', 'FL', 'ID', 'KS', 'LA', 'MI',
-					 'MI', 'MS', 'MO', 'NE', 'NV', 'NM', 'NC', 'ND', 'OH',
-					 'OK', 'SC', 'TN', 'TX', 'VA', 'WV', 'WY'], permits)) {
+		if (findOne(['ak', 'az', 'ar', 'co', 'de', 'fl', 'id', 'ks', 'la', 'mi',
+					 'mi', 'ms', 'mo', 'ne', 'nv', 'nm', 'nc', 'nd', 'oh',
+					 'ok', 'sc', 'tn', 'tx', 'va', 'wv', 'wy'], permits)) {
 			$('#vmap').vectorMap('set', 'colors', {nm: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {nm: illegalFill});
 		}
 		///New York
-		if(permits.includes('NY')) {
+		if(permits.includes('ny')) {
 			$('#vmap').vectorMap('set', 'colors', {ny: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {ny: illegalFill});
@@ -316,11 +316,11 @@
 			$('#vmap').vectorMap('set', 'colors', {nc: illegalFill});
 		}
 		///North Dakota
-		if (findOne(['AL', 'AK', 'AZ', 'AR', 'CO', 'DE', 'FL', 'GA', 'ID', 'IN',
-					 'IA', 'KS', 'KY', 'LA', 'ME', 'MI', 'MN', 'MO', 'MS', 'MT',
-					 'NE', 'NV', 'NH', 'NM', 'NC', 'ND', 'OH', 'OK', 'PA', 'SC',
-					 'SD', 'TN', 'TX', 'UT', 'VA', 'WA', 'WV', 'WI',
-					 'WY'], permits)) {
+		if (findOne(['al', 'ak', 'az', 'ar', 'co', 'de', 'fl', 'ga', 'id', 'in',
+					 'ia', 'ks', 'ky', 'la', 'me', 'mi', 'mn', 'mo', 'ms', 'mt',
+					 'ne', 'nv', 'nh', 'nm', 'nc', 'nd', 'oh', 'ok', 'pa', 'sc',
+					 'sd', 'tn', 'tx', 'ut', 'va', 'wa', 'wv', 'wi',
+					 'wy'], permits)) {
 			$('#vmap').vectorMap('set', 'colors', {nd: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {nd: illegalFill});
@@ -333,63 +333,63 @@
 		}
 		///Oklahoma
 		if((permits.length > 0) || 
-			residency === 'AK' || 
-			residency === 'AZ' || 
-			residency === 'ME' || 
-			residency === 'MS' || 
-			residency === 'VT' || 
-			residency === 'WY') {
+			residency === 'ak' || 
+			residency === 'az' || 
+			residency === 'me' || 
+			residency === 'ms' || 
+			residency === 'vt' || 
+			residency === 'wy') {
 			$('#vmap').vectorMap('set', 'colors', {ok: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {ok: illegalFill});
 		}
 		///Oregon
-		if(permits.includes('OR')) {
+		if(permits.includes('or')) {
 			$('#vmap').vectorMap('set', 'colors', {or: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {or: illegalFill});
 		}
 		///Pennsylvania
-		if (findOne(['AK', 'AZ', 'AR', 'CO', 'FL', 'GA', 'IN', 'IA', 'KS', 'KY',
-					 'LA', 'MI', 'MS', 'MO', 'MT', 'NC', 'ND', 'OH', 'OK', 'PA', 
-					 'SD', 'TN', 'TX', 'UT', 'VA', 'WV', 'WI', 'WY'], permits)) {
+		if (findOne(['ak', 'az', 'ar', 'co', 'fl', 'ga', 'in', 'ia', 'ks', 'ky',
+					 'la', 'mi', 'ms', 'mo', 'mt', 'nc', 'nd', 'oh', 'ok', 'pa', 
+					 'sd', 'tn', 'tx', 'ut', 'va', 'wv', 'wi', 'wy'], permits)) {
 			$('#vmap').vectorMap('set', 'colors', {pa: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {pa: illegalFill});
 		}
 		///Rhode Island
-		if(permits.includes('RI')) {
+		if(permits.includes('ri')) {
 			$('#vmap').vectorMap('set', 'colors', {ri: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {ri: illegalFill});
 		}
 		///South Carolina
-		if ((permits.includes('AK') && residency === 'AK') || 
-			(permits.includes('AZ') && residency === 'AZ') || 
-			(permits.includes('AR') && residency === 'AR') || 
-			(permits.includes('FL') && residency === 'FL') || 
-			(permits.includes('GA') && residency === 'GA') || 
-			(permits.includes('IN') && residency === 'IN') || 
-			(permits.includes('IA') && residency === 'IA') || 
-			(permits.includes('KS') && residency === 'KS') || 
-			(permits.includes('KY') && residency === 'KY') || 
-			(permits.includes('LA') && residency === 'LA') || 
-			(permits.includes('MI') && residency === 'MI') || 
-			(permits.includes('MS') && residency === 'MS') || 
-			(permits.includes('MO') && residency === 'MO') || 
-			(permits.includes('NM') && residency === 'NM') || 
-			(permits.includes('NC') && residency === 'NC') || 
-			(permits.includes('ND') && residency === 'ND') || 
-			(permits.includes('OH') && residency === 'OH') || 
-			(permits.includes('OK') && residency === 'OK') || 
-			(permits.includes('SC') && residency === 'SC') || 
-			(permits.includes('SD') && residency === 'SD') || 
-			(permits.includes('TN') && residency === 'TN') || 
-			(permits.includes('TX') && residency === 'TX') || 
-			(permits.includes('VA') && residency === 'VA') || 
-			(permits.includes('WV') && residency === 'WV') || 
-			(permits.includes('WI') && residency === 'WI') || 
-			(permits.includes('WY') && residency === 'WY')) {
+		if ((permits.includes('ak') && residency === 'ak') || 
+			(permits.includes('az') && residency === 'az') || 
+			(permits.includes('ar') && residency === 'ar') || 
+			(permits.includes('fl') && residency === 'fl') || 
+			(permits.includes('ga') && residency === 'ga') || 
+			(permits.includes('in') && residency === 'in') || 
+			(permits.includes('ia') && residency === 'ia') || 
+			(permits.includes('ks') && residency === 'ks') || 
+			(permits.includes('ky') && residency === 'ky') || 
+			(permits.includes('la') && residency === 'la') || 
+			(permits.includes('mi') && residency === 'mi') || 
+			(permits.includes('ms') && residency === 'ms') || 
+			(permits.includes('mo') && residency === 'mo') || 
+			(permits.includes('nm') && residency === 'nm') || 
+			(permits.includes('nc') && residency === 'nc') || 
+			(permits.includes('nd') && residency === 'nd') || 
+			(permits.includes('oh') && residency === 'oh') || 
+			(permits.includes('ok') && residency === 'ok') || 
+			(permits.includes('sc') && residency === 'sc') || 
+			(permits.includes('sd') && residency === 'sd') || 
+			(permits.includes('tn') && residency === 'tn') || 
+			(permits.includes('tx') && residency === 'tx') || 
+			(permits.includes('va') && residency === 'va') || 
+			(permits.includes('wv') && residency === 'wv') || 
+			(permits.includes('wi') && residency === 'wi') || 
+			(permits.includes('wy') && residency === 'wy')) {
 			$('#vmap').vectorMap('set', 'colors', {sc: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {sc: illegalFill});
@@ -407,11 +407,11 @@
 			$('#vmap').vectorMap('set', 'colors', {tn: illegalFill});
 		}
 		///Texas
-		if (findOne(['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'DE', 'FL', 'GA',
-					 'HI', 'ID', 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'MD', 'MA',
-					 'MI', 'MO', 'MS', 'MT', 'NE', 'NV', 'NJ', 'NM', 'NY', 'NC',
-					 'ND', 'OH', 'OK', 'PA', 'RI', 'SC', 'SD', 'TN', 'TX', 'UT',
-					 'VA', 'WV', 'WY'], permits)) {
+		if (findOne(['al', 'ak', 'az', 'ar', 'ca', 'co', 'ct', 'de', 'fl', 'ga',
+					 'hi', 'id', 'il', 'in', 'ia', 'ks', 'ky', 'la', 'md', 'ma',
+					 'mi', 'mo', 'ms', 'mt', 'ne', 'nv', 'nj', 'nm', 'ny', 'nc',
+					 'nd', 'oh', 'ok', 'pa', 'ri', 'sc', 'sd', 'tn', 'tx', 'ut',
+					 'va', 'wv', 'wy'], permits)) {
 			$('#vmap').vectorMap('set', 'colors', {tx: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {tx: illegalFill});
@@ -431,8 +431,8 @@
 			$('#vmap').vectorMap('set', 'colors', {va: illegalFill});
 		}
 		///Washington
-		if (findOne(['ID', 'KS', 'LA', 'MI', 'NC', 'ND', 'OH', 'OK', 'UT',
-					 'WA'], permits)) {
+		if (findOne(['id', 'ks', 'la', 'mi', 'nc', 'nd', 'oh', 'ok', 'ut',
+					 'wa'], permits)) {
 			$('#vmap').vectorMap('set', 'colors', {wa: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {wa: illegalFill});
@@ -444,17 +444,17 @@
 			$('#vmap').vectorMap('set', 'colors', {wv: illegalFill});
 		}
 		///Wisconsin
-		if (findOne(['AL', 'AK', 'AZ', 'AR', 'CA', 'CO', 'CT', 'GA', 'HI', 'ID',
-					 'IL', 'IN', 'IA', 'KS', 'KY', 'LA', 'MD', 'MA', 'MI', 'MN',
-					 'MO', 'MS', 'MT', 'NE', 'NV', 'NM', 'NY', 'NC', 'ND', 'OH',
-					 'PA', 'PR', 'SC', 'SD', 'TN', 'TX', 'UT', 'VA', 'VI', 'WA',
-					 'WV', 'WI', 'WY'], permits)) {
+		if (findOne(['al', 'ak', 'az', 'ar', 'ca', 'co', 'ct', 'ga', 'hi', 'id',
+					 'il', 'in', 'ia', 'ks', 'ky', 'la', 'md', 'ma', 'mi', 'mn',
+					 'mo', 'ms', 'mt', 'ne', 'nv', 'nm', 'ny', 'nc', 'nd', 'oh',
+					 'pa', 'PR', 'sc', 'sd', 'tn', 'tx', 'ut', 'va', 'VI', 'wa',
+					 'wv', 'wi', 'wy'], permits)) {
 			$('#vmap').vectorMap('set', 'colors', {wi: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {wi: illegalFill});
 		}
 		///Wyoming
-		if(residency === 'WY')
+		if(residency === 'wy')
 		{
 			$('#vmap').vectorMap('set', 'colors', {wy: permittedFill});
 		} else {
