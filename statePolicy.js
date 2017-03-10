@@ -12,7 +12,7 @@
 		var permits = $('input[name=permits]:checked').map(function () {
 			return $(this).val();
 		}).get();
-		var illegalFill = '#ff0000';
+		var illegalFill = '#cc0000';
 		var permittedFill = '#009933';
 
 /*		console.log("Age:" + over21);

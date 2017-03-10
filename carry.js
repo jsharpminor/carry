@@ -7,6 +7,34 @@
 			modal: true,
 			width: $(window).width() * 0.7,
 		});
+		$(".noNonresPermitsDialog").dialog({
+			open: function(e) {
+				var state = $(this).data('state');
+				$('input[value='+state+']').prop('checked', false);
+				updateCarryInfo();
+				console.log("Dechecked on opening: " + $('input[value='+state+']').attr('checked'));
+			},
+			autoOpen: false,
+			modal: true,
+			buttons: [
+				{
+					text: "Cancel",
+					click: function(e) {
+						console.log(e);
+						console.log($(this));
+						console.log(this);
+						$(this).dialog('close');
+					}
+				}, {
+					text: "Override (not recommended, may produce inaccurate data)",
+					click: function (e) {
+						var state = $(this).data('state');
+						$('input[value='+state+']').prop('checked', true);
+						updateCarryInfo();
+						$(this).dialog('close');
+					}
+			}]
+		});
 		$('#vmap').vectorMap({
 			map: 'usa_en',
 			enableZoom: false
