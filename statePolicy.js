@@ -117,7 +117,7 @@
 			(permits.includes('ar') && residency === 'ar') || 
 			(permits.includes('co') && residency === 'co') || 
 			(permits.includes('de') && residency === 'de') || 
-			(permits.includes('fl') && residency === 'fl') || 
+			(permits.includes('fl')) || 
 			(permits.includes('ga') && residency === 'ga') || 
 			(permits.includes('id') && residency === 'id') || 
 			(permits.includes('in') && residency === 'in') || 
@@ -382,7 +382,7 @@
 			(permits.includes('nd') && residency === 'nd') || 
 			(permits.includes('oh') && residency === 'oh') || 
 			(permits.includes('ok') && residency === 'ok') || 
-			(permits.includes('sc') && residency === 'sc') || 
+			(permits.includes('sc')) || 
 			(permits.includes('sd') && residency === 'sd') || 
 			(permits.includes('tn') && residency === 'tn') || 
 			(permits.includes('tx') && residency === 'tx') || 
