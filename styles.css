@@ -1,0 +1,32 @@
+.permitted {
+	background-color: #009933;
+	color: #ffffff;
+	font-weight: bold;
+}
+.illegal {
+	background-color: #ff0000;
+	color: #ffffff;
+	font-weight: bold;
+}
+.container {
+	width: 1050px;
+	clear:both;
+	margin: 100px 100px;
+	overflow:hidden;
+}
+.state {
+	float:left;
+	width:150px;
+	padding: 5px;
+	margin: 5px;
+}
+.permits > div {
+	float:left;
+	width: 250px;
+	padding: 5px;
+	margin: 0px;	
+}
+.below {
+	clear:both;
+	margin: 100px 0px;
+}

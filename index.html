@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+<link rel="stylesheet" type="text/css" href="normalize.css">
+<link rel="stylesheet" type="text/css" href="styles.css">
+<link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="jqvmap/dist/jqvmap.css" media="screen">
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+<script src="jqvmap/dist/jquery.vmap.js"></script>
+<script type="text/javascript" src="jqvmap/dist/maps/jquery.vmap.usa.js"></script>
+<script src="statePolicy.js"></script>
+<script src="carry.js"></script>
+</head>
+<body>
+
+<div id="vmap" style="width:70%; height:500px;"></div>
+<div class="container">
+	<div class="state" id="carryAL">Alabama</div>
+	<div class="state" id="carryAK">Alaska</div>
+	<div class="state" id="carryAZ">Arizona</div>
+	<div class="state" id="carryAR">Arkansas</div>
+	<div class="state" id="carryCA">California</div>
+	<div class="state" id="carryCO">Colorado</div>
+	<div class="state" id="carryCT">Connecticut</div>
+	<div class="state" id="carryDE">Delaware</div>
+	<div class="state" id="carryDC">District of Columbia</div>
+	<div class="state" id="carryFL">Florida</div>
+	<div class="state" id="carryGA">Georgia</div>
+	<div class="state" id="carryHI">Hawaii</div>
+	<div class="state" id="carryID">Idaho</div>
+	<div class="state" id="carryIL">Illinois</div>
+	<div class="state" id="carryIN">Indiana</div>
+	<div class="state" id="carryIA">Iowa</div>
+	<div class="state" id="carryKS">Kansas</div>
+	<div class="state" id="carryKY">Kentucky</div>
+	<div class="state" id="carryLA">Louisiana</div>
+	<div class="state" id="carryME">Maine</div>
+	<div class="state" id="carryMD">Maryland</div>
+	<div class="state" id="carryMA">Massachusetts</div>
+	<div class="state" id="carryMI">Michigan</div>
+	<div class="state" id="carryMN">Minnesota</div>
+	<div class="state" id="carryMS">Mississippi</div>
+	<div class="state" id="carryMO">Missouri</div>
+	<div class="state" id="carryMT">Montana</div>
+	<div class="state" id="carryNE">Nebraska</div>
+	<div class="state" id="carryNV">Nevada</div>
+	<div class="state" id="carryNH">New Hampshire</div>
+	<div class="state" id="carryNJ">New Jersey</div>
+	<div class="state" id="carryNM">New Mexico</div>
+	<div class="state" id="carryNY">New York</div>
+	<div class="state" id="carryNC">North Carolina</div>
+	<div class="state" id="carryND">North Dakota</div>
+	<div class="state" id="carryOH">Ohio</div>
+	<div class="state" id="carryOK">Oklahoma</div>
+	<div class="state" id="carryOR">Oregon</div>
+	<div class="state" id="carryPA">Pennsylvania</div>
+	<div class="state" id="carryRI">Rhode Island</div>
+	<div class="state" id="carrySC">South Carolina</div>
+	<div class="state" id="carrySD">South Dakota</div>
+	<div class="state" id="carryTN">Tennessee</div>
+	<div class="state" id="carryTX">Texas</div>
+	<div class="state" id="carryUT">Utah</div>
+	<div class="state" id="carryVT">Vermont</div>
+	<div class="state" id="carryVA">Virginia</div>
+	<div class="state" id="carryWA">Washington</div>
+	<div class="state" id="carryWV">West Virginia</div>
+	<div class="state" id="carryWI">Wisconsin</div>
+	<div class="state" id="carryWY">Wyoming</div>
+</div>
+Select which permits you own.
+<div class="permits">
+	<div><input type="checkbox" class="question" name="permits" value="AK">Alaska</div>
+	<div><input type="checkbox" class="question" name="permits" value="AL">Alabama</div>
+	<div><input type="checkbox" class="question" name="permits" value="AZ">Arizona</div>
+	<div><input type="checkbox" class="question" name="permits" value="AR">Arkansas</div>
+	<div><input type="checkbox" class="question" name="permits" value="CA">California</div>
+	<div><input type="checkbox" class="question" name="permits" value="CO">Colorado</div>
+	<div><input type="checkbox" class="question" name="permits" value="CT">Connecticut</div>
+	<div><input type="checkbox" class="question" name="permits" value="DE">Delaware</div>
+	<div><input type="checkbox" class="question" name="permits" value="DC">District of Columbia</div>
+	<div><input type="checkbox" class="question" name="permits" value="FL">Florida</div>
+	<div><input type="checkbox" class="question" name="permits" value="GA">Georgia</div>
+	<div><input type="checkbox" class="question" name="permits" value="HI">Hawaii</div>
+	<div><input type="checkbox" class="question" name="permits" value="ID">Idaho</div>
+	<div><input type="checkbox" class="question" name="permits" value="IL">Illinois</div>
+	<div><input type="checkbox" class="question" name="permits" value="IN">Indiana</div>
+	<div><input type="checkbox" class="question" name="permits" value="IA">Iowa</div>
+	<div><input type="checkbox" class="question" name="permits" value="KS">Kansas</div>
+	<div><input type="checkbox" class="question" name="permits" value="KY">Kentucky</div>
+	<div><input type="checkbox" class="question" name="permits" value="LA">Louisiana</div>
+	<div><input type="checkbox" class="question" name="permits" value="ME">Maine</div>
+	<div><input type="checkbox" class="question" name="permits" value="MD">Maryland</div>
+	<div><input type="checkbox" class="question" name="permits" value="MA">Massachusetts</div>
+	<div><input type="checkbox" class="question" name="permits" value="MI">Michigan</div>
+	<div><input type="checkbox" class="question" name="permits" value="MN">Minnesota</div>
+	<div><input type="checkbox" class="question" name="permits" value="MS">Mississippi</div>
+	<div><input type="checkbox" class="question" name="permits" value="MO">Missouri</div>
+	<div><input type="checkbox" class="question" name="permits" value="MT">Montana</div>
+	<div><input type="checkbox" class="question" name="permits" value="NE">Nebraska</div>
+	<div><input type="checkbox" class="question" name="permits" value="NV">Nevada</div>
+	<div><input type="checkbox" class="question" name="permits" value="NH">New Hampshire</div>
+	<div><input type="checkbox" class="question" name="permits" value="NJ">New Jersey</div>
+	<div><input type="checkbox" class="question" name="permits" value="NM">New Mexico</div>
+	<div><input type="checkbox" class="question" name="permits" value="NY">New York</div>
+	<div><input type="checkbox" class="question" name="permits" value="NC">North Carolina</div>
+	<div><input type="checkbox" class="question" name="permits" value="ND">North Dakota</div>
+	<div><input type="checkbox" class="question" name="permits" value="OH">Ohio</div>
+	<div><input type="checkbox" class="question" name="permits" value="OK">Oklahoma</div>
+	<div><input type="checkbox" class="question" name="permits" value="OR">Oregon</div>
+	<div><input type="checkbox" class="question" name="permits" value="PA">Pennsylvania</div>
+	<div><input type="checkbox" class="question" name="permits" value="RI">Rhode Island</div>
+	<div><input type="checkbox" class="question" name="permits" value="SC">South Carolina</div>
+	<div><input type="checkbox" class="question" name="permits" value="SD">South Dakota</div>
+	<div><input type="checkbox" class="question" name="permits" value="TN">Tennessee</div>
+	<div><input type="checkbox" class="question" name="permits" value="TX">Texas</div>
+	<div><input type="checkbox" class="question" name="permits" value="UT">Utah</div>
+	<div><input type="checkbox" class="question" name="permits" value="VT">Vermont</div>
+	<div><input type="checkbox" class="question" name="permits" value="VA">Virginia</div>
+	<div><input type="checkbox" class="question" name="permits" value="WA">Washington</div>
+	<div><input type="checkbox" class="question" name="permits" value="WV">West Virginia</div>
+	<div><input type="checkbox" class="question" name="permits" value="WI">Wisconsin</div>
+	<div><input type="checkbox" class="question" name="permits" value="WY">Wyoming</div>
+</div>
+
+<div class="below">
+	<p>Are you over 21?
+	<input type="radio" class="question" name="q21" value="over21" checked="checked" />Yes
+	<input type="radio" class="question" name="q21" value="over18" />Over 18 but not over 21
+	<input type="radio" class="question" name="q21" value="under18" />Under 18</p>
+	
+	<p>Are you a US citizen?
+	<input type="radio" class="question" name="citizen" value="usCitizen" checked="checked" />Yes
+	<input type="radio" class="question" name="citizen" value="nonCitizen" />No</p>
+	</p>
+	
+	<p>In what state do you live (where is your driver's license / other photo ID)?
+	<select class="question" id="residency">
+		<option value=""></option>
+		<option value="AL">Alabama</option>
+		<option value="AK">Alaska</option>
+		<option value="AZ">Arizona</option>
+		<option value="AR">Arkansas</option>
+		<option value="CA">California</option>
+		<option value="CO">Colorado</option>
+		<option value="CT">Connecticut</option>
+		<option value="DE">Delaware</option>
+		<option value="DC">District of Columbia</option>
+		<option value="FL">Florida</option>
+		<option value="GA">Georgia</option>
+		<option value="HI">Hawaii</option>
+		<option value="ID">Idaho</option>
+		<option value="IL">Illinois</option>
+		<option value="IN">Indiana</option>
+		<option value="IA">Iowa</option>
+		<option value="KS">Kansas</option>
+		<option value="KY">Kentucky</option>
+		<option value="LA">Louisiana</option>
+		<option value="ME">Maine</option>
+		<option value="MD">Maryland</option>
+		<option value="MA">Massachusetts</option>
+		<option value="MI">Michigan</option>
+		<option value="MN">Minnesota</option>
+		<option value="MS">Mississippi</option>
+		<option value="MO">Missouri</option>
+		<option value="MT">Montana</option>
+		<option value="NE">Nebraska</option>
+		<option value="NV">Nevada</option>
+		<option value="NH">New Hampshire</option>
+		<option value="NJ">New Jersey</option>
+		<option value="NM">New Mexico</option>
+		<option value="NY">New York</option>
+		<option value="NC">North Carolina</option>
+		<option value="ND">North Dakota</option>
+		<option value="OH">Ohio</option>
+		<option value="OK">Oklahoma</option>
+		<option value="OR">Oregon</option>
+		<option value="PA">Pennsylvania</option>
+		<option value="RI">Rhode Island</option>
+		<option value="SC">South Carolina</option>
+		<option value="SD">South Dakota</option>
+		<option value="TN">Tennessee</option>
+		<option value="TX">Texas</option>
+		<option value="UT">Utah</option>
+		<option value="VT">Vermont</option>
+		<option value="VA">Virginia</option>
+		<option value="WA">Washington</option>
+		<option value="WV">West Virginia</option>
+		<option value="WI">Wisconsin</option>
+		<option value="WY">Wyoming</option>
+	</select>
+	</p>
+</div>
+<script type="text/javascript">
+</script>
+</body>
+<div id="dialogInit" title="Initialize">
+	<p>This document presumes that you are a US citizen, and have not been convicted or charged with any felonies, violent misdemeanors, or domestic violence offences. Always be sure to check the laws of the state and/or locality you are planning to carry in before carrying concealed. This document is intended as a guideline, and does NOT constitute legal advice or replace your own due diligence!!!</p>
+</div>
+</html>
