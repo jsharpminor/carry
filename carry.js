@@ -5,7 +5,7 @@
 		var initialize = $("#dialogInit").dialog({
 			autoOpen: true,
 			modal: true,
-			width: $(window).width() * 0.7,
+			width: $(window).width() * 0.9,
 		});
 		$(".noNonresPermitsDialog").dialog({
 			open: function(e) {
@@ -35,9 +35,19 @@
 					}
 			}]
 		});
+		$(".stateInfo").dialog({
+			modal:true,
+			autoOpen:false,
+			width: $(window).width() * 0.9,
+		});
 		$('#vmap').vectorMap({
 			map: 'usa_en',
-			enableZoom: false
+			enableZoom: false,
+			onRegionClick: function(event, code, region) {
+				var infoCode = '#' + code + "Info";
+				$(infoCode).dialog('open');
+				console.log(infoCode);
+			}
 		});
 	});
 
