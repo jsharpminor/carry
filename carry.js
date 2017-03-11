@@ -8,11 +8,14 @@
 			width: $(window).width() * 0.9,
 		});
 		$(".noNonresPermitsDialog").dialog({
-			open: function(e) {
+			open: function(e, f, g) {
 				var state = $(this).data('state');
 				$('input[value='+state+']').prop('checked', false);
 				updateCarryInfo();
-				console.log("Dechecked on opening: " + $('input[value='+state+']').attr('checked'));
+				console.log($(this));
+				console.log(e);
+				console.log(f);
+				console.log(g);
 			},
 			autoOpen: false,
 			modal: true,
@@ -20,9 +23,6 @@
 				{
 					text: "Cancel",
 					click: function(e) {
-						console.log(e);
-						console.log($(this));
-						console.log(this);
 						$(this).dialog('close');
 					}
 				}, {
@@ -34,6 +34,14 @@
 						$(this).dialog('close');
 					}
 			}]
+		});
+		$(".question").click(function () {
+			if($(this).prop('checked')) {
+				var stateCode = $(this).attr('value');
+				if($('#'+stateCode+'Dialog').length) {
+					$('#'+stateCode+'Dialog').dialog('open');
+				}
+			}
 		});
 		$(".stateInfo").dialog({
 			modal:true,
@@ -47,7 +55,8 @@
 				var infoCode = '#' + code + "Info";
 				$(infoCode).dialog('open');
 				console.log(infoCode);
+				event.preventDefault();
 			}
 		});
-			updateCarryInfo();
+		updateCarryInfo();
 	});
