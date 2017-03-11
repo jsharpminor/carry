@@ -26,7 +26,7 @@
 						$(this).dialog('close');
 					}
 				}, {
-					text: "Override (not recommended, may produce inaccurate data)",
+					text: "Add permit anyway",
 					click: function (e) {
 						var state = $(this).data('state');
 						$('input[value='+state+']').prop('checked', true);
@@ -49,5 +49,5 @@
 				console.log(infoCode);
 			}
 		});
+			updateCarryInfo();
 	});
-
