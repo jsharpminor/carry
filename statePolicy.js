@@ -209,7 +209,8 @@
 		///Idaho
 		if(permitsOwned.includes('id')) {
 			$('#vmap').vectorMap('set', 'colors', {id: hasPermitFill})
-		} else if(permitsOwned.length > 0) {
+		} else if((permitsOwned.length > 0) ||
+					residency === 'id') {
 			$('#vmap').vectorMap('set', 'colors', {id: permittedFill});
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {id: illegalFill});
@@ -428,7 +429,7 @@
 		}
 		///Oregon
 		if(permitsOwned.includes('or')) {
-			$('#vmap').vectorMap('set', 'colors', {al: hasPermitFill})
+			$('#vmap').vectorMap('set', 'colors', {or: hasPermitFill})
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {or: illegalFill});
 		}
@@ -444,7 +445,7 @@
 		}
 		///Rhode Island
 		if(permitsOwned.includes('ri')) {
-			$('#vmap').vectorMap('set', 'colors', {al: hasPermitFill})
+			$('#vmap').vectorMap('set', 'colors', {ri: hasPermitFill})
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {ri: illegalFill});
 		}

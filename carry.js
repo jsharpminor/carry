@@ -47,6 +47,7 @@
 			modal:true,
 			autoOpen:false,
 			width: $(window).width() * 0.9,
+			height: $(window).height() * 0.8
 		});
 		$('#vmap').vectorMap({
 			map: 'usa_en',
