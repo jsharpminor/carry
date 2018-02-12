@@ -1,220 +1,283 @@
-	function updateCarryInfo() {
+function updateCarryInfo() {
 
-		function findOne (haystack, arr) {
-			return arr.some(function (v) {
-				return haystack.indexOf(v) >= 0;
-			});
-		}
 
-		var over21 = $('input[name=q21]:checked').val();
+	var illegalFill = '#cc0000';
+	var permittedFill = '#009933';
+	var hasPermitFill = '#003399';
+
+	///Alabama
+	var over21 = $('input[name=q21]:checked').val();
+	var residency = $('#residency').val();
+	var citizen = $('input[name=citizen]:checked').val();
+	var permitsOwned = $('input[name=permits]:checked').map(function () {
+		return $(this).val();
+	}).get();
+
+	function validateCarry(state,
+			constitutionalCarry,
+			ageRequirement, ageRequirementException,
+			reciprocity, reciprocityExceptions,
+			nonresidentPermitPolicy,
+			stateResidentPermitPolicy, stateResidentGracePeriod) {
+
+		var age = $('input[name=q21]:checked').val();
 		var residency = $('#residency').val();
 		var citizen = $('input[name=citizen]:checked').val();
 		var permitsOwned = $('input[name=permits]:checked').map(function () {
 			return $(this).val();
 		}).get();
-		var illegalFill = '#cc0000';
-		var permittedFill = '#009933';
-		var hasPermitFill = '#003399';
+		legality = 0
+		tooltip = '';
+		longState = stateNameFromAbbr(state)
+		if(residency) {
+			longResState = stateNameFromAbbr(residency)
+		}
+		article = policy[state].article
+		var acceptedList = []
 
-/*		console.log("Age:" + over21);
-		console.log("Residency: " + residency);
-		console.log("Citizenship: " + citizen);
-		console.log("Permits owned: " + permitsOwned);
-		console.log("# Permits owned: " + permitsOwned.length); */
-
-		///Alabama
-		if(permitsOwned.includes('al')) {
-			$('#vmap').vectorMap('set', 'colors', {al: hasPermitFill})
-		} else if(permitsOwned.length > 0) {
-			$('#vmap').vectorMap('set', 'colors', {al: permittedFill});
-			if(!$('#permittedList [name=al]').length) {
-				$('#permittedList').append('<li name="al">&nbsp;</li>');
-			}
-		} else {
-			$('#vmap').vectorMap('set', 'colors', {al: illegalFill});
-			if($('#permittedList [name=al]').length)
+		if(constitutionalCarry === 'constitutional carry') {
+			newTooltip = longState + " has Constitutional Carry. Anyone " + ageRequirement +
+						" may legally carry concealed in " + longState + " with just their driver's license."
+			tooltip = legalize(legality, 1, tooltip, newTooltip)
+			legality = 1
+		}
+		if (constitutionalCarry === 'constitutional carry for residents') {
+			if(residency === state)
 			{
-				$('#permittedList').children('[name=al]').remove();
+				if(validAge(ageRequirement, age)) {
+					newTooltip = longState + " has Constitutional Carry for residents. Residents " +
+							ageRequirement + " may legally carry concealed in " + longState + " with just their " +
+							"driver's license."
+					tooltip = legalize(legality, 1, tooltip, newTooltip)
+					legality = 1
+				}
+				else {
+					newTooltip = "Although " + longState + " has Constitutional Carry for residents, persons " +
+					"must be " + ageRequirement + " to legally carry concealed firearms in " + 
+					longState + "."
+					tooltip = legalize(legality, 0, tooltip, newTooltip)
+					legality = 0
+				}
 			}
 		}
-		///Alaska
-		if(permitsOwned.includes('ak')) {
-			$('#vmap').vectorMap('set', 'colors', {ak: hasPermitFill})
-			if(!$('#permittedList [name=ak]').length) {
-				$('#permittedList').append('<li name="ak">&nbsp;</li>');
+		newTooltip = longState + " requires a permit for concealed carry."
+		$.each(permitsOwned, function (index, thisPermit) {
+			if(state === thisPermit) {
+				newTooltip = "You indicated that you have " + article + longState + " permit. Cplmap does " +
+							" no further checking against state policies. We presume that the states do " +
+							" their own checking before issuing your permit."
+				tooltip = legalize(legality, 2, tooltip, newTooltip)
+				legality = 2
+				return false;
 			}
-		} else if(over21 === 'over21') {
-			$('#vmap').vectorMap('set', 'colors', {ak: permittedFill});
-			if(!$('#permittedList [name=ak]').length) {
-				$('#permittedList').append('<li name="ak">&nbsp;</li>');
+			if (state === residency &&
+			  stateResidentPermitPolicy === "requires state residents permit in state") {
+				newTooltip = "Although " + longState + " accepts out-of-state permits, your status as " +
+							article + longState + " resident means that you must acquire " + article +
+							longState + " permit to legally carry in " + longState + "." + stateResidentGracePeriod;
+				tooltip = legalize(legality, 0, tooltip, newTooltip)
+				legality = 0
+				return false;
 			}
-		} else {
-			$('#vmap').vectorMap('set', 'colors', {ak: illegalFill});
-			if($('#permittedList [name=ak]').length) {
-				$('#permittedList').children('[name=ak]').remove();
+			if(reciprocity === 'accepts all permits') {
+				if (validAge(ageRequirement, age)) {
+					acceptedList.push(stateNameFromAbbr(thisPermit))
+					sentenceList = toSentence(acceptedList)
+					if(acceptedList.length === 1) {
+						newTooltip = longState + " accepts all permits. Your " + acceptedList + " permit is valid in " + longState + ".";
+						tooltip = legalize(legality, 1, tooltip, newTooltip)
+						legality = 1
+					}
+					else {
+						newTooltip = longState + " accepts all permits. Your " +
+									sentenceList + " permits are valid in " + longState + ".";
+						tooltip = legalize(legality, 1, tooltip, newTooltip)
+						legality = 1
+					}
+				}
+				else {
+					newTooltip = "Although " + longState + " accepts all carry permits, state law" +
+								" requires that you be " + ageRequirement + " to carry concealed."
+					tooltip = legalize(legality, 0, tooltip, newTooltip)
+					legality = 0
+				}
 			}
+			else if(typeof reciprocity === "object") {
+				if (nonresidentPermitPolicy === "accepts nonresident permits") {
+					if(sentenceList = getAcceptedList(reciprocity, permitsOwned)) {
+						newTooltip = longState + " accepts some permits. Your permits from " + sentenceList +
+									" are accepted in " + longState + ".";
+						tooltip = legalize(legality, 1, tooltip, newTooltip)
+						legality = 1
+					}
+					else {
+						reciprocityList = stateAbbrList(reciprocity)
+						newTooltip = longState + " accepts nonresident permits from " + reciprocityList +
+									". You haven't indicated that you have any of these."
+						tooltip = legalize(legality, 0, tooltip, newTooltip)
+						legality = 0
+					}
+				}
+				else if(nonresidentPermitPolicy === "does not honor nonresident permits") {
+					var acceptedResidentPermit = false
+					if(acceptedResidentPermit = findResidentPermits(residency, permitsOwned, reciprocity)) {
+						newTooltip = longState + " accepts resident permits from your home state of " + longResState + "."
+						tooltip = legalize(legality, 1, tooltip, newTooltip)
+						legality = 1
+					}
+					else {
+						console.log(reciprocity, residency)
+						if(getAcceptedList(reciprocity, residency) ){
+							if(findResidentPermits(residency, permitsOwned, reciprocity))
+							{
+								newTooltip = "Congrats"
+								tooltip = legalize(legality, 1, tooltip, newTooltip)
+								legality = 1
+							}
+							else {
+								newTooltip = longState + " accepts resident permits from some states, including your home state of " +
+											longResState + ". You must acquire a permit to legally carry concealed in " + longState + "."
+								tooltip = legalize(legality, 0, tooltip, newTooltip)
+								legality = 0
+							}
+						}
+						else {
+							newTooltip = longState + " does not accept nonresident permits. " + longState + " accepts " + 
+										"residential permits from some states, but not from " + longResState + "."
+							tooltip = legalize(legality, 0, tooltip, newTooltip)
+							legality = 0
+						}
+					}
+				}	
+				else {
+					newTooltip = "Working on that."
+					tooltip = legalize(legality, 0, tooltip, newTooltip)
+					legality = 0
+				}
+			} 
+			else {
+				newTooltip = longState + " does not accept any out-of-state permits.";
+				tooltip = legalize(legality, 0, tooltip, newTooltip)
+				legality = 0
+			}
+		});
+		var permitObject = {}
+		if(legality === 2) {
+			permitObject[state] = hasPermitFill
 		}
+		else if(legality === 1) {
+			permitObject[state] = permittedFill
+		}
+		else {
+			permitObject[state] = illegalFill
+		}
+		$('#vmap').vectorMap('set', 'colors', permitObject)
+		console.log(acceptedList)
+		sentenceList = toSentence(acceptedList);
+
+//
+
+//			newTooltip = longState + " accepts some permits. Your permit from " + acceptedList + " is accepted in " + longState + ".";
+
+		policy[state].Policy = tooltip
+	}
+
+		validateCarry("al",
+						"permit required",
+						"over 21", "",
+						"accepts all permits", "",
+						"accepts nonresident permits",
+						"requires state residents permit in state", "");
+		validateCarry("ak",
+						"constitutional carry",
+						"over 21", "",
+						"accepts all permits", "",
+						"accepts nonresident permits",
+						"no state resident permit policy", "");
 		///Arizona
-		if(permitsOwned.includes('az')) {
-			$('#vmap').vectorMap('set', 'colors', {az: hasPermitFill})
-			if($('#permittedList [name=az]').length) {
-				$('#permittedList').children('[name=az]').remove();
-			}
-		} else if(over21 === 'over21') {
-			$('#vmap').vectorMap('set', 'colors', {az: permittedFill});
-			if($('#permittedList [name=az]').length) {
-				$('#permittedList').children('[name=az]').remove();
-			}
-		} else {
-			$('#vmap').vectorMap('set', 'colors', {az: illegalFill});
-			if($('#permittedList [name=az]').length) {
-				$('#permittedList').children('[name=az]').remove();
-			}
-		}
-		///Arkansas
-		if(permitsOwned.includes('ar')) {
-			$('#vmap').vectorMap('set', 'colors', {ar: hasPermitFill})
-		} else if(permitsOwned.length > 0) {
-			$('#vmap').vectorMap('set', 'colors', {ar: permittedFill});
-		} else {
-			$('#vmap').vectorMap('set', 'colors', {ar: illegalFill});
-		}
-		///California
-		if(permitsOwned.includes('ca')) {
-			$('#vmap').vectorMap('set', 'colors', {ca: hasPermitFill})
-		} else {
-			$('#vmap').vectorMap('set', 'colors', {ca: illegalFill});
-		}
-		///Colorado
-		if(permitsOwned.includes('co')) {
-			$('#vmap').vectorMap('set', 'colors', {al: hasPermitFill})
-		} else if ((permitsOwned.includes('al') && residency === 'al') ||
-				   (permitsOwned.includes('ak') && residency === 'ak') || 
-				   (permitsOwned.includes('az') && residency === 'az') || 
-				   (permitsOwned.includes('ar') && residency === 'ar') || 
-				   (permitsOwned.includes('de') && residency === 'de') || 
-				   (permitsOwned.includes('fl') && residency === 'fl') || 
-				   (permitsOwned.includes('ga') && residency === 'ga') || 
-				   (permitsOwned.includes('id') && residency === 'id') || 
-				   (permitsOwned.includes('in') && residency === 'in') || 
-				   (permitsOwned.includes('ia') && residency === 'ia') || 
-				   (permitsOwned.includes('ks') && residency === 'ks') || 
-				   (permitsOwned.includes('ky') && residency === 'ky') || 
-				   (permitsOwned.includes('la') && residency === 'la') || 
-				   (permitsOwned.includes('mi') && residency === 'mi') || 
-				   (permitsOwned.includes('ms') && residency === 'ms') || 
-				   (permitsOwned.includes('mo') && residency === 'mo') || 
-				   (permitsOwned.includes('mt') && residency === 'mt') || 
-				   (permitsOwned.includes('ne') && residency === 'ne') || 
-				   (permitsOwned.includes('nh') && residency === 'nh') || 
-				   (permitsOwned.includes('nm') && residency === 'nm') || 
-				   (permitsOwned.includes('nc') && residency === 'nc') || 
-				   (permitsOwned.includes('nd') && residency === 'nd') || 
-				   (permitsOwned.includes('oh') && residency === 'oh') || 
-				   (permitsOwned.includes('ok') && residency === 'ok') || 
-				   (permitsOwned.includes('pa') && residency === 'pa') || 
-				   (permitsOwned.includes('sd') && residency === 'sd') || 
-				   (permitsOwned.includes('tn') && residency === 'tn') || 
-				   (permitsOwned.includes('tx') && residency === 'tx') || 
-				   (permitsOwned.includes('ut') && residency === 'ut') || 
-				   (permitsOwned.includes('va') && residency === 'va') || 
-				   (permitsOwned.includes('wv') && residency === 'wv') || 
-				   (permitsOwned.includes('wi') && residency === 'wi') || 
-				   (permitsOwned.includes('wy') && residency === 'wy')) {
-			$('#vmap').vectorMap('set', 'colors', {co: permittedFill});
-		} else {
-			$('#vmap').vectorMap('set', 'colors', {co: illegalFill});
-		}
+		validateCarry("az",
+						"constitutional carry",
+						"over 21", "",
+						"accepts all permits", "",
+						"accepts nonresident permits",
+						"no state resident permit policy", "");
+		validateCarry("ar",
+						"permit required",
+						"over 21", {"over 19" : "member of Armed Forces or honorably discharged"},
+						"accepts all permits", "",
+						"accepts nonresident permits",
+						"no state resident permit policy", "");
+		validateCarry("ca",
+						"permit required",
+						"over 21", "",
+						"does not accept out-of-state permits", "",
+						"does not honor nonresident permits",
+						"requires state residents permit in state", "");
+		validateCarry("co",
+						"permit required",
+						"over 21", "",
+						['al', 'ak', 'az', 'ar', 'de',  'fl', 'ga', 'id', 'in', 'ia',
+						 'ks', 'ky', 'la', 'mi', 'ms',  'mo', 'mt', 'ne', 'nh', 'nm',
+						 'nc', 'nd', 'oh', 'ok', 'pa',  'sd', 'tn', 'tx', 'ut', 'va',
+						 'wv', 'wi', 'wy'], {"age" : "over 21"},
+						 "does not honor nonresident permits",
+						 "requires state residents permit in state", "")
 		///Connecticut
-		if(permitsOwned.includes('ct')) {
-			$('#vmap').vectorMap('set', 'colors', {ct: hasPermitFill})
-		} else {
-			$('#vmap').vectorMap('set', 'colors', {ct: illegalFill});
-		}
+		validateCarry("ct",
+						"permit required",
+						"over 21", "",
+						"does not accept out-of-state permits", "",
+						"does not honor nonresident permits",
+						"requires state residents permit in state", "");
 		///Delaware
-		if(permitsOwned.includes('de')) {
-			$('#vmap').vectorMap('set', 'colors', {de: hasPermitFill})
-		} else if (findOne(['ak', 'ar', 'az', 'co', 'fl', 'id', 'ky', 'me', 'mi', 'mo',
-							'nm', 'nc', 'nd', 'oh', 'ok', 'sd', 'tn', 'tx', 'ut',
-							'wv'], permitsOwned)) {
-			$('#vmap').vectorMap('set', 'colors', {de: permittedFill});
-		} else {
-			$('#vmap').vectorMap('set', 'colors', {de: illegalFill});
-		}
+		validateCarry("de",
+						"permit required",
+						"over 21", "",
+						['ak', 'ar', 'az', 'co', 'fl',  'id', 'ky', 'me', 'mi', 'mo',
+						 'nm', 'nc', 'nd', 'oh', 'ok',  'sd', 'tn', 'tx', 'ut',
+						 'wv'], "",
+						"accepts nonresident permits",
+						"requires state residents permit in state", "");
 		///District of Columbia
-		if(permitsOwned.includes('dc')) {
-			$('#vmap').vectorMap('set', 'colors', {dc: hasPermitFill})
-		} else {
-			$('#vmap').vectorMap('set', 'colors', {dc: illegalFill});
-		}
-		///Florida
-		if(permitsOwned.includes('fl')) {
-			$('#vmap').vectorMap('set', 'colors', {fl: hasPermitFill})
-		} else if ((permitsOwned.includes('al') && residency === 'al') ||
-				   (permitsOwned.includes('ak') && residency === 'ak') || 
-				   (permitsOwned.includes('az') && residency === 'az') || 
-				   (permitsOwned.includes('ar') && residency === 'ar') || 
-				   (permitsOwned.includes('co') && residency === 'co') || 
-				   (permitsOwned.includes('de') && residency === 'de') || 
-				   (permitsOwned.includes('ga') && residency === 'ga') || 
-				   (permitsOwned.includes('id') && residency === 'id') || 
-				   (permitsOwned.includes('in') && residency === 'in') || 
-				   (permitsOwned.includes('ia') && residency === 'ia') || 
-				   (permitsOwned.includes('ks') && residency === 'ks') || 
-				   (permitsOwned.includes('ky') && residency === 'ky') || 
-				   (permitsOwned.includes('la') && residency === 'la') || 
-				   (permitsOwned.includes('me') && residency === 'me') || 
-				   (permitsOwned.includes('mi') && residency === 'mi') || 
-				   (permitsOwned.includes('ms') && residency === 'ms') || 
-				   (permitsOwned.includes('mo') && residency === 'mo') || 
-				   (permitsOwned.includes('mt') && residency === 'mt') || 
-				   (permitsOwned.includes('ne') && residency === 'ne') || 
-				   (permitsOwned.includes('nv') && residency === 'nv') || 
-				   (permitsOwned.includes('nh') && residency === 'nh') || 
-				   (permitsOwned.includes('nm') && residency === 'nm') || 
-				   (permitsOwned.includes('nc') && residency === 'nc') || 
-				   (permitsOwned.includes('nd') && residency === 'nd') || 
-				   (permitsOwned.includes('oh') && residency === 'oh') || 
-				   (permitsOwned.includes('ok') && residency === 'ok') || 
-				   (permitsOwned.includes('pa') && residency === 'pa') || 
-				   (permitsOwned.includes('sc') && residency === 'sc') || 
-				   (permitsOwned.includes('sd') && residency === 'sd') || 
-				   (permitsOwned.includes('tn') && residency === 'tn') || 
-				   (permitsOwned.includes('tx') && residency === 'tx') || 
-				   (permitsOwned.includes('ut') && residency === 'ut') || 
-				   (permitsOwned.includes('va') && residency === 'va') || 
-				   (permitsOwned.includes('wv') && residency === 'wv') || 
-				   (permitsOwned.includes('wy') && residency === 'wy')) {
-			$('#vmap').vectorMap('set', 'colors', {fl: permittedFill});
-		} else {
-			$('#vmap').vectorMap('set', 'colors', {fl: illegalFill});
-		}
+		validateCarry("dc",
+						"permit required",
+						"over 21", "",
+						"does not accept out-of-state permits", "",
+						"does not honor nonresident permits",
+						"requires state residents permit in state", "");
+		validateCarry("fl",
+						"permit required",
+						"over 21", "",
+						['al', 'ak', 'az', 'ar', 'co',  'de', 'ga', 'id', 'in', 'ia',
+						 'ks', 'ky', 'la', 'me', 'mi',  'ms', 'mo', 'mt', 'ne', 'nv',
+						 'nh', 'nm', 'nc', 'nd', 'oh',  'ok', 'pa', 'sc', 'sd', 'tn',
+						 'tx', 'ut', 'va', 'wv', 'wy'], "",
+						 "does not honor nonresident permits",
+						 "no state resident permit policy", "")
 		///Georgia
-		if(permitsOwned.includes('ga')) {
-			$('#vmap').vectorMap('set', 'colors', {ga: hasPermitFill})
-		} else if (findOne(['al', 'ak', 'az', 'ar', 'co', 'fl', 'id', 'ia', 'in', 'ks',
-							'ky', 'la', 'me', 'mi', 'mo', 'ms', 'mt', 'nh', 'nc', 'nd',
-							'oh', 'ok', 'pa', 'sc', 'sd', 'tn', 'tx', 'ut', 'wi', 'wv',
-							'wy'], permitsOwned)) {
-			$('#vmap').vectorMap('set', 'colors', {ga: permittedFill});
-		} else {
-			$('#vmap').vectorMap('set', 'colors', {ga: illegalFill});
-		}
+		validateCarry("ga",
+						"permit required",
+						"over 18", "",
+						['al', 'ak', 'az', 'ar', 'co',  'fl', 'id', 'ia', 'in', 'ks',
+						 'ky', 'la', 'me', 'mi', 'mo',  'ms', 'mt', 'nh', 'nc', 'nd',
+						 'oh', 'ok', 'pa', 'sc', 'sd',  'tn', 'tx', 'ut', 'wi', 'wv',
+						 'wy'], "",
+						"accepts nonresident permits",
+						"requires state residents permit in state", "");
 		///Hawaii
-		if(permitsOwned.includes('hi')) {
-			$('#vmap').vectorMap('set', 'colors', {hi: hasPermitFill})
-		} else {
-			$('#vmap').vectorMap('set', 'colors', {hi: illegalFill});
-		}
+		validateCarry("hi",
+						"permit required",
+						"over 21", "",
+						"does not accept out-of-state permits", "",
+						"does not honor nonresident permits",
+						"requires state residents permit in state", "");
 		///Idaho
-		if(permitsOwned.includes('id')) {
-			$('#vmap').vectorMap('set', 'colors', {id: hasPermitFill})
-		} else if((permitsOwned.length > 0) ||
-					residency === 'id') {
-			$('#vmap').vectorMap('set', 'colors', {id: permittedFill});
-		} else {
-			$('#vmap').vectorMap('set', 'colors', {id: illegalFill});
-		}
+		validateCarry("id",
+						"constitutional carry for residents",
+						"over 21", "",
+						"accepts all permits", "",
+						"accepts nonresident permits",
+						"no state resident permit policy", "");
 		///Illinois
 		if(permitsOwned.includes('il')) {
 			$('#vmap').vectorMap('set', 'colors', {il: hasPermitFill})
@@ -254,7 +317,15 @@
 			$('#vmap').vectorMap('set', 'colors', {ky: illegalFill});
 		}
 		///Louisiana
-		if(permitsOwned.includes('la')) {
+		if(residency === 'la') {
+			if(permitsOwned.includes('la')) {
+				$('#vmap').vectorMap('set', 'colors', {la: hasPermitFill})
+			}
+			else {
+				$('#vmap').vectorMap('set', 'colors', {la: illegalFill});
+			}
+		}
+		else if(permitsOwned.includes('la')) {
 			$('#vmap').vectorMap('set', 'colors', {la: hasPermitFill})
 		} else if (findOne(['al', 'ak', 'az', 'ar', 'co', 'fl', 'ga', 'id', 'ia', 'in',
 							'ks', 'ky', 'me', 'mi', 'mo', 'ms', 'mn', 'mt', 'ne', 'nv',
@@ -289,7 +360,11 @@
 		if(permitsOwned.includes('mi')) {
 			$('#vmap').vectorMap('set', 'colors', {mi: hasPermitFill})
 		} else if(permitsOwned.length > 0) {
-			$('#vmap').vectorMap('set', 'colors', {mi: permittedFill});
+			if(findResidentPermits(residency, permitsOwned, "all")) {
+				$('#vmap').vectorMap('set', 'colors', {mi: permittedFill});
+			} else {
+				$('#vmap').vectorMap('set', 'colors', {mi: illegalFill});
+			}
 		} else {
 			$('#vmap').vectorMap('set', 'colors', {mi: illegalFill});
 		}
@@ -421,6 +496,7 @@
 				   residency === 'az' || 
 				   residency === 'me' || 
 				   residency === 'ms' || 
+				   residency === 'ok' || 
 				   residency === 'vt' || 
 				   residency === 'wy') {
 			$('#vmap').vectorMap('set', 'colors', {ok: permittedFill});

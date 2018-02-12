@@ -17,9 +17,48 @@
 	NO, are you kidding?
 	* Does not issue nonresident permits, LOL, wut did you expect?
 6. Colorado
-	SOME: AL, AK, AZ, AK, DE, FL, GA, ID, IN, IA, KS, KY, LA, MI, MS, MO, MT, NE, NH, NM, NC, ND, OH, OK, PA, SD, TN, TX, UT, VA, WV, WI, WY
+	SOME: AL, AK, AZ, AR, DE, FL, GA, ID, IN, IA, KS, KY, LA, MI, MS, MO, MT, NE, NH, NM, NC, ND, OH, OK, PA, SD, TN, TX, UT, VA, WV, WI, WY
 	NOT:  CA, CT, DC, HI, IL, ME, MD, MA, MN, NV, NJ, NY, OR, RI, SC, VT, WA, 
 	Recognizes any state which recognizes its permit.
 	Must be a resident of the issuing state.
 	Must be 21 years old
-7. 
+7. Connecticut
+	Recognizes none but itself.
+	Does issue nonresident permits.
+8. Delaware
+	SOME: AK, AR, AZ, CO, FL, ID, KY, ME, MI, MO, NM, NC, ND, OH, OK, SD, TN, TX, UT, WV
+9. Florida
+	SOME: AL, AK, AR, AZ, CO, DE, GA, IA, ID, IN, KS, KY, LA, ME, MI, MS, MO, MT, NE, NH, NC, ND, NV, NM, OH, OK, PA, SC, SD, TN, TX, UT, VA, WV, WY
+	Must be a resident of the issuing state.
+10. Georgia
+	SOME: AK, AR, AZ, AL, CO, FL, IA, ID, IN, KS, KY, LA, ME, MI, MO, MS, MT, NH, NC, ND, OH, OK, PA, SC, SD, TN, TX, UT, WI, WV, WY
+11. Hawaii
+	RECOGNIZES NONE BUT ITSELF.
+12. Idaho.
+	Recognizes ALL
+13.	Illinois
+	RECOGNIZES NONE BUT ITSELF.
+14. Indiana
+	Recognizes ALL
+15. Iowa
+	Reognizes ALL
+16. Kansas
+
+
+AZ
+CT
+FL
+ID
+ME
+NV
+NH
+OR
+VA
+WA
+
+
+WA       -- actually not needed with the other three
+CT       -- enables CT
+OR       -- enables OR
+ID or NV -- enables MN
+FL       -- enables FL & PA

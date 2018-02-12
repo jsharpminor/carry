@@ -7,12 +7,14 @@
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="jqvmap/dist/jqvmap.css" media="screen">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
-<script src="jqvmap/dist/jquery.vmap.js"></script>
-<script type="text/javascript" src="jqvmap/dist/maps/jquery.vmap.usa.js"></script>
-<script src="statePolicy.js"></script>
-<script src="carry.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
+
+<script src="jqvmap/dist/jquery.vmap.js" type="text/javascript"></script>
+<script src="jqvmap/dist/maps/jquery.vmap.usa.js" type="text/javascript"></script>
+
+<script src="statePolicy.js" type="text/javascript"></script>
+<script src="carry.js" type="text/javascript"></script>
 </head>
 <body>
 
@@ -75,12 +77,20 @@
 <div class="below">
 	<p>Are you over 21?
 	<input type="radio" class="question" name="q21" value="over21" checked="checked" />Yes
-	<input type="radio" class="question" name="q21" value="over18" />Over 18 but not over 21
-	<input type="radio" class="question" name="q21" value="under18" />Under 18</p>
+	<input type="radio" class="question" name="q21" value="over18" />At least 18 but not over 21
+	<input type="radio" class="question" name="q21" value="over16" />At least 16 but not over 18
+	<input type="radio" class="question" name="q21" value="under16" />Under 16</p>
 	
 	<p>Are you a US citizen?
 	<input type="radio" class="question" name="citizen" value="usCitizen" checked="checked" />Yes
 	<input type="radio" class="question" name="citizen" value="nonCitizen" />No</p>
+	</p>
+
+	<p>Have you ever been in the Armed Forces?
+	<input type="radio" class="question" name="afService" value="none" checked="checked" />No
+	<input type="radio" class="question" name="afService" value="active" />Active duty
+	<input type="radio" class="question" name="afService" value="dishonor" />Dishonorably discharged
+	<input type="radio" class="question" name="afService" value="honor" />Honorably discharged
 	</p>
 	
 	<p>In what state do you live (where is your driver's license / other photo ID)?
@@ -143,8 +153,63 @@
 <script type="text/javascript">
 </script>
 </body>
-<div id="dialogInit" title="Initialize">
+<div id="dialogInit" title="Select state of residency to continue.">
 	<p><em>This document is very much in alpha stage! It is not to be considered reliable. It is to be a supplement to your own research. As this document is built, it will contain links to Attorneys General, state laws, caselaw, and state boards and official agencies that will give you more up-to-date and official information. Use the information presented here at your own risk!!</em> Please report any inaccuracies, errors, or page problems to the site owner.</p><p>This document presumes that you are a US citizen, and have not been convicted or charged with any felonies, violent misdemeanors, or domestic violence offences. Always be sure to check the laws of the state and/or locality you are planning to carry in before carrying concealed. This document is intended as a guideline, and does NOT constitute legal advice or replace your own due diligence!!!</p>
+	<p>In what state do you live (where is your driver's license / other photo ID)?
+	<select class="question" id="residencyInitial">
+		<option value=""></option>
+		<option value="al">Alabama</option>
+		<option value="ak">Alaska</option>
+		<option value="az">Arizona</option>
+		<option value="ar">Arkansas</option>
+		<option value="ca">California</option>
+		<option value="co">Colorado</option>
+		<option value="ct">Connecticut</option>
+		<option value="de">Delaware</option>
+		<option value="dc">District of Columbia</option>
+		<option value="fl">Florida</option>
+		<option value="ga">Georgia</option>
+		<option value="hi">Hawaii</option>
+		<option value="id">Idaho</option>
+		<option value="il">Illinois</option>
+		<option value="in">Indiana</option>
+		<option value="ia">Iowa</option>
+		<option value="ks">Kansas</option>
+		<option value="ky">Kentucky</option>
+		<option value="la">Louisiana</option>
+		<option value="me">Maine</option>
+		<option value="md">Maryland</option>
+		<option value="ma">Massachusetts</option>
+		<option value="mi">Michigan</option>
+		<option value="mn">Minnesota</option>
+		<option value="ms">Mississippi</option>
+		<option value="mo">Missouri</option>
+		<option value="mt">Montana</option>
+		<option value="ne">Nebraska</option>
+		<option value="nv">Nevada</option>
+		<option value="nh">New Hampshire</option>
+		<option value="nj">New Jersey</option>
+		<option value="nm">New Mexico</option>
+		<option value="ny">New York</option>
+		<option value="nc">North Carolina</option>
+		<option value="nd">North Dakota</option>
+		<option value="oh">Ohio</option>
+		<option value="ok">Oklahoma</option>
+		<option value="or">Oregon</option>
+		<option value="pa">Pennsylvania</option>
+		<option value="ri">Rhode Island</option>
+		<option value="sc">South Carolina</option>
+		<option value="sd">South Dakota</option>
+		<option value="tn">Tennessee</option>
+		<option value="tx">Texas</option>
+		<option value="ut">Utah</option>
+		<option value="vt">Vermont</option>
+		<option value="va">Virginia</option>
+		<option value="wa">Washington</option>
+		<option value="wv">West Virginia</option>
+		<option value="wi">Wisconsin</option>
+		<option value="wy">Wyoming</option>
+	</select>
 </div>
 <div id="alDialog" class="noNonresPermitsDialog" data-state="al">Alabama honors all other states' permits, but it does not issue nonresident permits.</div>
 <div id="akDialog" class="noNonresPermitsDialog" data-state="ak">Alaska has constitutional carry for people over 21, but it does not issue nonresident permits.</div>
@@ -155,7 +220,6 @@
 <div id="deDialog" class="noNonresPermitsDialog" data-state="de">Delaware honors 21 states' permits. It only issues 30-day temporary licenses to nonresidents. "No individual shall be issued more than 3 temporary licenses."</div>
 <div id="gaDialog" class="noNonresPermitsDialog" data-state="ga">Georgia honors 32 states' permits. It does not issue nonresident permits.</div>
 <div id="hiDialog" class="noNonresPermitsDialog" data-state="hi">Hawaii does not honor any other states' permits, and it does not issue nonresident permits. It is a may-issue state that is no-issue in practice.</div>
-<div id="idDialog" class="noNonresPermitsDialog" data-state="id">Idaho honors all other states' permits. Idaho is shall-issue toward nonresidents, but you must go in person to the state of Idaho. Idaho has constitutional carry for its own residents.</div>
 <div id="ilDialog" class="noNonresPermitsDialog" data-state="il">Illinois does not honor any others states' permits. The Illinois State Police have stated that they will only issue nonresident permits to residents of Arkansas, Mississippi, Texas, and Virginia.</div>
 <div id="inDialog" class="noNonresPermitsDialog" data-state="in">Indiana honors all other states' permits. It will only issue nonresident permits to an applicant who "has a regular place of business or employment in Indiana".</div>
 <div id="iaDialog" class="noNonresPermitsDialog" data-state="ia">Iowa honors all other states' permits, but it will only issue a nonresident permit to law enforcement officers and "other nonresidents with a demonstrable viable threat to themselves or their family as verified by a law enforcement agency in the jurisdiction where the threat occurred".</div>
@@ -163,29 +227,23 @@
 <div id="kyDialog" class="noNonresPermitsDialog" data-state="ky">Kentucky honors all other states' permits, but it only gives nonresident permits to members of the Armed Forces who have already been assigned to posts in Kentucky for at least 6 months.</div>
 <div id="laDialog" class="noNonresPermitsDialog" data-state="la">Louisiana honors 37 states' permits. It does not issue nonresident permits.</div>
 <div id="mdDialog" class="noNonresPermitsDialog" data-state="md">Maryland does not honor any other states' permits. It is a "may-issue" state; close to "no-issue" in practice. A Maryland permit is nearly impossible for the average person to acquire. You must show cause, which includes police reports, and even then it is a toss-up. Be very sure you want to select Maryland.</div>
-<div id="meDialog" class="noNonresPermitsDialog" data-state="me">Check Maine. Its constitutional carry may only apply to its own residents.</div>
 <div id="maDialog" class="noNonresPermitsDialog" data-state="ma">Massachusetts does not honor any other states' permits. A Massachusetts permit requires an appearance in person at the Firearms Records Bureau in Chelsea, MA. Massachusetts is "may-issue"; nonresident permits are rarely issued.</div>
 <div id="miDialog" class="noNonresPermitsDialog" data-state="mi">Michigan honors all other states' permits if you are a resident of that state, but it does not issue nonresident permits.</div>
-<div id="mnDialog" class="noNonresPermitsDialog" data-state="mn">Minnesota permits require an application to a Minnesota sheriff.</div>
 <div id="msDialog" class="noNonresPermitsDialog" data-state="ms">Mississippi has constitutional carry for anyone over 21 in a holster or bag, but it does not issue nonresident permits. Beware of "pocket carrying" or other styles of carrying in Mississippi; it's illegal.</div>
 <div id="moDialog" class="noNonresPermitsDialog" data-state="mo">Missouri has constitutional carry for anyone over 18, but it does not issue nonresident permits.</div>
 <div id="mtDialog" class="noNonresPermitsDialog" data-state="mt">Montana honors 43 states' permits. It does not issue nonresident permits.</div>
 <div id="neDialog" class="noNonresPermitsDialog" data-state="ne">Nebraska honors 38 states' permits. It does not issue nonresident permits.</div>
-<div id="njDialog" class="noNonresPermitsDialog" data-state="nj">New Jersey is a "may-issue" state; close to "no-issue" in practice. A Maryland permit is nearly impossible for the average person to acquire. Be very sure you want to select New Jersey.</div>
+<div id="njDialog" class="noNonresPermitsDialog" data-state="nj">New Jersey is a "may-issue" state; close to "no-issue" in practice. A New Jersey permit is nearly impossible for the average person to acquire. Be very sure you want to select New Jersey.</div>
 <div id="nmDialog" class="noNonresPermitsDialog" data-state="nm">New Mexico honors 24 states' permits. It does not issue nonresident permits.</div>
 <div id="nyDialog" class="noNonresPermitsDialog" data-state="ny">New York does not honor any other states' permits. It does not issue nonresident permits.</div>
 <div id="ncDialog" class="noNonresPermitsDialog" data-state="nc">North Carolina honors all other states' permits. It does not issue nonresident permits.</div>
-<div id="ndDialog" class="noNonresPermitsDialog" data-state="nd">North Dakota honors permits from 38 states. It issues nonresident permits to most states, but training must take place in North Dakota and cannot be part of training for another state's permit.</div>
 <div id="ohDialog" class="noNonresPermitsDialog" data-state="oh">Ohio honors all other states' permits. It only issues nonresident permits to people employed in Ohio. It also can issue an emergency license to people with a "justifiable need."</div>
 <div id="okDialog" class="noNonresPermitsDialog" data-state="ok">In addition to honoring all other states' permits, Oklahoma honors constitutional carry for residents of certain constitutional carry states. It does not issue nonresident permits.</div>
-<div id="orDialog" class="noNonresPermitsDialog" data-state="or">Oregon does not honor any other states' permits. It shall issue a permit to residents of states that border Oregon, or people who own or lease property in Oregon.</div>
-<div id="paDialog" class="noNonresPermitsDialog" data-state="pa">Pennsylvania honors 28 states' permits, but only honors some if the permittee is a resident of the state. It shall issue permits to nonresidents, but it requires a trip to Pennsylvania.</div>
+<div id="orDialog" class="noNonresPermitsDialog" data-state="or">Oregon does not honor any other states' permits. It shall issue a permit to residents of states that border Oregon, or people who own or lease property in Oregon, but does not issue nonresident permits to residents of other states without owning property in Oregon.</div>
 <div id="riDialog" class="noNonresPermitsDialog" data-state="ri">Rhode Island does not honor any other states' permits. Nonresident permits are rarely issued.</div>
 <div id="scDialog" class="noNonresPermitsDialog" data-state="sc">South Carolina honors permits from 23 states where the licensee is a resident of the issuing state. South Carolina will only issue nonresident permits to South Carolina landowners.</div>
 <div id="sdDialog" class="noNonresPermitsDialog" data-state="sd">While South Dakota honors all other states' permits, it does not itself issue nonresident permits.</div>
-<div id="tnDialog" class="noNonresPermitsDialog" data-state="tn">Tennessee issues permits to nonresidents employed in Tennessee for six months or more. While it honors all other states' permits, if it denies a permit, the applicant's privilege to carry in Tennessee is revoked regardless of what concealed carry permits he holds.</div>
-<div id="txDialog" class="noNonresPermitsDialog" data-state="tx">Texas honors permits from 43 states. A nonresident Texas concealed carry permit requires a safety class conducted in Texas by a certified instructor.</div>
-<div id="utDialog" class="noNonresPermitsDialog" data-state="ut">Acquiring a Utah permit requires taking an approved course. Utah posts a list of certified instructors on the Internet.</div>
+<div id="tnDialog" class="noNonresPermitsDialog" data-state="tn">Tennessee only issues permits to nonresidents employed in Tennessee for six months or more. While it honors all other states' permits, if it denies a permit, the applicant's privilege to carry in Tennessee is revoked regardless of what concealed carry permits he holds.</div>
 <div id="vtDialog" class="noNonresPermitsDialog" data-state="vt">Vermont does not issue concealed carry permits to anyone, resident or nonresident. It is forbidden by its state constitution from restricting or regulating the rights of its citizens to bear arms.</div>
 <div id="wvDialog" class="noNonresPermitsDialog" data-state="wv">West Virginia has constitutional carry. It does not issue nonresident permits.</div>
 <div id="wiDialog" class="noNonresPermitsDialog" data-state="wi">Wisconsin honors 43 states' permits. It does not issue nonresident permits.</div>
@@ -193,66 +251,97 @@
 
 <div id="alInfo" class="stateInfo" data-state="al" title="Alabama Concealed Carry Laws">
 	<h4>Permits Alabama Honors</h4><div>
-		<p>"Per Alabama Code Section 13A-11-85, Alabama will recognize any valid out of state carry conceal permit." - Office of the Attorney General</p>
-		<a href="http://www.ago.state.al.us/Page-Gun-Reprocity-Law" target="_blank">State of Alabama: Office of the Attorney General &mdash; Gun Reciprocity Law</a> &ndash; Retrieved 2017-03-10<br /></div>
+		<p>"Under Alabama Code Section 13A-11-85, Alabama will recognize any valid out of state permit." - Office of the Attorney General</p>
+		<p>A person licensed to carry a handgun in any state shall be authorized to carry a handgun in this state. This section shall apply to a license holder from another state only while the license holder is not a resident of this state. - <a href="http://alisondb.legislature.state.al.us/alison/codeofalabama/1975/13A-11-85.htm" target="_blank">Code of Alabama, Section 13A-11-85(a)</a></p>
+		<a href="https://ago.state.al.us/Firearms" target="_blank">State of Alabama: Office of the Attorney General &mdash; Gun Reciprocity Law</a> &ndash; Retrieved 2018-02-03<br /></div>
 	<h4>Alabama Nonresident Permits</h4><div>
 		<p>"Currently, Alabama does not issue carry conceal permits to out of state residents." - Office of the Attorney General</p></div>
 	<h4>Alabama Law</h4><div>
 		<a href="http://alisondb.legislature.state.al.us/alison/codeofalabama/1975/coatoc.htm" target="_blank">The Code of Alabama 1975</a> &ndash; Official site of the Alabama Legislature<br />
-		<a href="http://alisondb.legislature.state.al.us/alison/codeofalabama/1975/13A-11-85.htm">Section 13A-11-85</a> &ndash; Section 13A-11-85<br />
-		<a href="http://www.ago.state.al.us/File-Alabama-Weapon-Laws" target="_blank">Alabama's Firearms and Weapons Law</a> &ndash; PDF<br /></div>
+		<a href="http://alisondb.legislature.state.al.us/alison/codeofalabama/1975/13A-11-85.htm" target="_blank">Section 13A-11-85</a> &ndash; Section 13A-11-85<br />
+		<a href="http://alisondb.legislature.state.al.us/alison/codeofalabama/1975/13A-11-7 5.htm" target="_blank">Section 13A-11-85</a> &ndash; Section 13A-11-75<br />
+		<a href="https://www.ago.state.al.us/Documents/firearms/File-Alabama-Weapon-Laws.pdf" target="_blank">Alabama's Firearms and Weapons Law</a> &ndash; PDF<br /></div>
 	<h4>Other Sites</h4><div>
 		<a href="http://www.handgunlaw.us/states/alabama.pdf" target="_blank">Handgunlaw.us - Alabama</a><br />
 		<a href="http://www.usacarry.com/alabama_concealed_carry_permit_information.html" target="_blank">USA Carry - Alabama</a><br />
 		<a href="https://en.wikipedia.org/wiki/Gun_laws_in_Alabama" target="_blank">Wikipedia - Gun Laws in Alabama</a><br />
-		<a href="https://www.nraila.org/gun-laws/state-gun-laws/alabama/">NRA-ILA: State Gun Laws - Alabama</a>
+		<a href="https://www.nraila.org/gun-laws/state-gun-laws/alabama/" target="_blank">NRA-ILA: State Gun Laws - Alabama</a>
 	</div>
 </div>
 <div id="akInfo" class="stateInfo" data-state="ak" title="Alaska Concealed Carry Laws">
 	<h4>Permits Alaska Honors</h4>
-	<p>Alaska has constitutional carry: <em>"There is no prohibition against carrying a concealed weapon so long as the prohibited behaviors regarding the carry are respected."</em> <small> - Alaska DPS, "In Alaska"</small>. However, in <a href="https://www.isp.idaho.gov/BCI/inc/documents/Alaska.pdf">Alaska's reciprocity agreement with Idaho</a>, they have stated that they will only recognize Idaho's enhanced concealed carry permit. So do your own figuring there.</p>
-	<a href="http://dps.alaska.gov/statewide/permitslicensing/reciprocity.aspx">State of Alaska Department of Public Safety - Permits &amp; Licensing - Reciprocity</a><br />
+	<p>Alaska has constitutional carry: <em>"There is no prohibition against carrying a concealed weapon so long as the prohibited behaviors regarding the carry are respected."</em> - <a href="https://dps.alaska.gov/Statewide/R-I/PermitsLicensing/InAlaska" target="_blank">Alaska DPS, "In Alaska"</a>. However, in <a href="https://www.isp.idaho.gov/BCI/inc/documents/Alaska.pdf" target="_blank">Alaska's reciprocity agreement with Idaho</a>, they have stated that they will only recognize Idaho's enhanced concealed carry permit. So do your own figuring there.</p>
+	<a href="http://dps.alaska.gov/statewide/permitslicensing/reciprocity.aspx" target="_blank">State of Alaska Department of Public Safety - Permits &amp; Licensing - Reciprocity</a><br />
 	<h4>Alaska Nonresident Permits</h4>
 	<p>Alaska does not issue nonresident permits.<em>"The applicant must, in summary: (2) Be an Alaska resident and have lived in the state for more than 90 days"</em> - Alaska DPS, Concealed Handgun Permits</p>
-	<a href="http://dps.alaska.gov/Statewide/PermitsLicensing/concealedhandguns.aspx">State of Alaska Department of Public Safety - Permits &amp; Licensing - Alaska Concealed Handgun</a><br />
+	<a href="http://dps.alaska.gov/Statewide/PermitsLicensing/concealedhandguns.aspx" target="_blank">State of Alaska Department of Public Safety - Permits &amp; Licensing - Alaska Concealed Handgun</a><br />
 	<h4>Alaska Law</h4>
-	<a href="http://dps.alaska.gov/statewide/PermitsLicensing/docs/achp/ACHP%20Statutes%20and%20Regs.pdf">State of Alaska - Alaska Statutes and Regulations Concerning Alaska Concealed Handgun Permits</a>
+	<a href="http://dps.alaska.gov/statewide/PermitsLicensing/docs/achp/ACHP%20Statutes%20and%20Regs.pdf" target="_blank">State of Alaska - Alaska Statutes and Regulations Concerning Alaska Concealed Handgun Permits</a>
 	<h4>Other Sites</h4>
+		<a href="http://www.handgunlaw.us/states/alaska.pdf" target="_blank">Handgunlaw.us - Alaska</a><br />
+		<a href="http://www.usacarry.com/alaska_concealed_carry_permit_information.html" target="_blank">USA Carry - Alaska</a><br />
+		<a href="https://en.wikipedia.org/wiki/Gun_laws_in_Alaska" target="_blank">Wikipedia - Gun Laws in Alaska</a><br />
+		<a href="https://www.nraila.org/gun-laws/state-gun-laws/alaska/" target="_blank">NRA-ILA: State Gun Laws - Alaska</a>
 </div>
 <div id="azInfo" class="stateInfo" data-state="az" title="Arizona Concealed Carry Laws">
 	<div class="accordion">
-	<h3>Permits Arizona Honors</h3>
-		<div><p>Arizona is a constitutional carry state. Anyone who can legally possess a firearm may carry concealed in Arizona.</p></div>
-	<h3>Arizona Nonresident Permits</h3>
+	<h4>Permits Arizona Honors</h4>
+		<div><p>Arizona is a constitutional carry state. Anyone who can legally possess a firearm may carry concealed in Arizona.</p>
+			<p>It seems that Arizona tends to operate under the principle that <a href="https://en.wikipedia.org/wiki/Everything_which_is_not_forbidden_is_allowed" target="_blank">everything which is not forbidden is allowed</a>. In other words, it's not so much that you can prove out of the law or the AG's office that permitless carry is forbidden, but that you can prove by the US 2nd Amendment and the lack of Arizona carry laws that you're allowed to carry concealed. If you have better information than this, please contact me and let me know about it!</p></div>
+	<h4>Arizona Nonresident Permits</h4>
 		<div><p>Arizona has issued permits by mail. You must furnish proof of competence with a firearm through completing a course susch as an NRA training. Arizona does not differentiate between residents and nonresidents.</p>
 		<a href="http://www.azdps.gov/services/public/cwp?qt-cwp_menu_=10#qt-cwp_menu_" target="_blank">Arizona Department of Public Safety - Arizona State Troopers - Concealed Weapons and Permits</a></div>
-	<h3>Arizona Law</h3><div>
+	<h4>Arizona Law</h4><div>
 		<a href="http://www.azleg.gov/ars/13/03112.htm" target="_blank">Arizona Legislature - Arizona Revised Statutes 13-3112.</a><br />
 		<a href="http://apps.azsos.gov/public_services/Title_13/13-09.pdf" target="_blank">Arizona Administrative Code Title 13, Ch. 9 - Arizona Department of Public Safety - Concealed Weapons Permits</a><br />
 		<a href="https://www.phoenix.gov/policesite/Documents/088411.pdf" target="_blank">Arizona Weapons and Firearms FAQs - City of Phoenix</a></div>
-	<h3>Other Sites</h3><div></div>
+	<h4>Other Sites</h4><div>
+		<a href="http://www.handgunlaw.us/states/arizona.pdf" target="_blank">Handgunlaw.us - Arizona</a><br />
+		<a href="http://www.usacarry.com/arizona_concealed_carry_permit_information.html" target="_blank">USA Carry - Arizona</a><br />
+		<a href="https://en.wikipedia.org/wiki/Gun_laws_in_Arizona" target="_blank">Wikipedia - Gun Laws in Arizona</a><br />
+		<a href="https://www.nraila.org/gun-laws/state-gun-laws/arizona/" target="_blank">NRA-ILA: State Gun Laws - Arizona</a>
 	</div>
 </div>
 <div id="arInfo" class="stateInfo" data-state="ar" title="Arkansas Concealed Carry Laws">
-	<h4>Permits Arizona Honors</h4>
-	<h4>Alaska Nonresident Permits</h4>
-	<h4>Alaska Law</h4>
-	<h4>Other Sites</h4>
+	<h4>Permits Arkansas Honors</h4><div>
+		Effective August 16, 2013, the State of Arkansas acknowledges all concealed handgun carry licenses lawfully issued by another state. - <a href="http://asp.arkansas.gov/services-and-programs/detail/concealed-handgun-licensing" target="_blank">Arkansas State Police - Concealed Handgun Carry Licensing</a></div>
+	<h4>Arkansas Nonresident Permits</h4>
+		<div>Arkansas does not issue licenses to nonresidents.</div>
+	<h4>Arkansas Law</h4>
+		<div><a href="https://static.ark.org/eeuploads/asp/Arkansas_Code_CHCL_Laws_updated_November_2017.pdf" target="_blank">Arkansas Code - CHCL - ECHCL - PDF</a><br />
+			<a href="https://static.ark.org/eeuploads/asp/Arkansas_concealed_handgun_carry_license_rules_effective_1-1-2018.pdf" target="_blank">Arkansas CHCL Administrative Rules</a></div>
+	<h4>Other Sites</h4><div>
+		<a href="http://www.handgunlaw.us/states/arkansas.pdf" target="_blank">Handgunlaw.us - Arkansas</a><br />
+		<a href="http://www.usacarry.com/arkansas_concealed_carry_permit_information.html" target="_blank">USA Carry - Arkansas</a><br />
+		<a href="https://en.wikipedia.org/wiki/Gun_laws_in_Arkansas" target="_blank">Wikipedia - Gun Laws in Arkansas</a><br />
+		<a href="https://www.nraila.org/gun-laws/state-gun-laws/arkansas/" target="_blank">NRA-ILA: State Gun Laws - Arkansas</a>
+	</div>
 </div>
 <div id="caInfo" class="stateInfo" data-state="ca" title="California Concealed Carry Laws">
 	<h4>Permits California Honors</h4>
-	Ha! As if.
+	Ha! As if. (California does not honor any other permits.)
 	<h4>California Nonresident Permits</h4>
-	You're funny.
+	You're funny. (The People's Republic of California does not issue nonresident permits, comrade.)
 	<h4>California Law</h4>
-	I'm not sure, but even <strong>looking</strong> at this site is probably a violation of California law.
-	<h4>Other Sites</h4>
+	You're probably violating California law by even looking at this site.<br />
+
+	<h4>Other Sites</h4><div>
+		<a href="http://www.handgunlaw.us/states/california.pdf" target="_blank">Handgunlaw.us - California</a><br />
+		<a href="http://www.usacarry.com/california_concealed_carry_permit_information.html" target="_blank">USA Carry - California</a><br />
+		<a href="https://en.wikipedia.org/wiki/Gun_laws_in_California" target="_blank">Wikipedia - Gun Laws in California</a><br />
+		<a href="https://www.nraila.org/gun-laws/state-gun-laws/california/" target="_blank">NRA-ILA: State Gun Laws - California</a>
+	</div>
 </div>
 <div id="coInfo" class="stateInfo" data-state="co" title="Colorado Concealed Carry Laws">
 	<h4>Permits Colorado Honors</h4>
 	<h4>Colorado Nonresident Permits</h4>
 	<h4>Colorado Law</h4>
-	<h4>Other Sites</h4>
+	<h4>Other Sites</h4><div>
+		<a href="http://www.handgunlaw.us/states/arkansas.pdf" target="_blank">Handgunlaw.us - Arkansas</a><br />
+		<a href="http://www.usacarry.com/arkansas_concealed_carry_permit_information.html" target="_blank">USA Carry - Arkansas</a><br />
+		<a href="https://en.wikipedia.org/wiki/Gun_laws_in_Arkansas" target="_blank">Wikipedia - Gun Laws in Arkansas</a><br />
+		<a href="https://www.nraila.org/gun-laws/state-gun-laws/arkansas/" target="_blank">NRA-ILA: State Gun Laws - Arkansas</a>
+	</div>
 </div>
 <div id="ctInfo" class="stateInfo" data-state="ct" title="Connecticut Concealed Carry Laws">
 	<h4>Permits Connecticut Honors</h4>
@@ -370,7 +459,7 @@
 	<h4>Other Sites</h4>
 </div>
 <div id="msInfo" class="stateInfo" data-state="ms" title="Mississippi Concealed Carry Laws">
-	<h4>Permits AMississippi Honors</h4>
+	<h4>Permits Mississippi Honors</h4>
 	<h4>Mississippi Nonresident Permits</h4>
 	<h4>Mississippi Law</h4>
 	<h4>Other Sites</h4>
@@ -393,6 +482,8 @@
 	<h4>Nebraska Nonresident Permits</h4>
 	<h4>Nebraska Law</h4>
 	<h4>Other Sites</h4>
+	<a href="https://nebraskashooters.com/laws/reciprocity/">Nebraska Shooters - Reciprocity</a>
+	<a href="https://nebraskashooters.com/laws/">Nebraska Shooters - Laws</a>
 </div>
 <div id="nvInfo" class="stateInfo" data-state="nv" title="Nevada Concealed Carry Laws">
 	<h4>Permits Nevada Honors</h4>
@@ -526,6 +617,7 @@
 <div id="waInfo" class="stateInfo" data-state="wa" title="Washington Concealed Carry Laws">
 	<h4>Permits Washington Honors</h4>
 	<a href="http://www.atg.wa.gov/concealed-weapon-reciprocity" target="_blank">Washington State Office of the Attorney General - Concealed Weapon Reciprocity</a>
+		Idaho (Enhanced Permit only), Kansas, Louisiana, Michigan, North Carolina, North Dakota (Class 1 ND permits only), Ohio, Oklahoma, Utah (Utah Provisional Concealed Firearm Permit not recognized)
 	<h4>Washington Nonresident Permits</h4>
 	<h4>Washington Law</h4>
 	<p>The state of Washington prohibits political subdivisions from passing firearms laws more restrictive than state law.</p>
@@ -554,9 +646,14 @@
 	<p>Wyoming honors the concealed carry permits of any state that honors Wyoming's permits.</p>
 	<a href="http://wyomingdci.wyo.gov/dci-criminal-justice-information-systems-section/concealed-firearms-permits/cfp-faq">Wyoming Department of Criminal Investigation - Concealed Firearms Permits-Frequently Asked Questions</a>
 	<h4>Wyoming Nonresident Permits</h4>
-	<p>Wyoming does not issue nonresident permits.</p>
+		<p>Wyoming does not issue nonresident permits.</p>
 	<h4>Wyoming Law</h4>
-	<h4>Other Sites</h4>
+	<h4>Other Sites</h4><div>
+		<a href="http://www.handgunlaw.us/states/wyoming.pdf" target="_blank">Handgunlaw.us - Wyoming</a><br />
+		<a href="http://www.usacarry.com/wyoming_concealed_carry_permit_information.html" target="_blank">USA Carry - Wyoming</a><br />
+		<a href="https://en.wikipedia.org/wiki/Gun_laws_in_Wyoming" target="_blank">Wikipedia - Gun Laws in Wyoming</a><br />
+		<a href="https://www.nraila.org/gun-laws/state-gun-laws/wyoming/" target="_blank">NRA-ILA: State Gun Laws - Wyoming</a>
+	</div>
 </div>
 <div hidden="hidden">
 	<ul id="permittedList">
