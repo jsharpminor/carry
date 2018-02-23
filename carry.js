@@ -1,116 +1,11 @@
-var policy = {
-	"al" : { 'Name' : "Alabama",
-			'article' : 'an ' },
-	"ak" : { 'Name' : "Alaska",
-			'article' : 'an ' },
-	"az" : { 'Name' : "Arizona",
-			'article' : 'an ' },
-	"ar" : { 'Name' : "Arkansas",
-			'article' : 'an ' },
-	"ca" : { 'Name' : "California",
-			'article' : 'a ' },
-	"co" : { 'Name' : "Colorado",
-			'article' : 'a ' },
-	"ct" : { 'Name' : "Connecticut",
-			'article' : 'a ' },
-	"de" : { 'Name' : "Delaware",
-			'article' : 'a ' },
-	"dc" : { 'Name' : "District of Columbia",
-			'article' : 'a ' },
-	"fl" : { 'Name' : "Florida",
-			'article' : 'a ' },
-	"ga" : { 'Name' : "Georgia",
-			'article' : 'a ' },
-	"hi" : { 'Name' : "Hawaii",
-			'article' : 'a ' },
-	"id" : { 'Name' : "Idaho",
-			'article' : 'an ' },
-	"il" : { 'Name' : "Illinois",
-			'article' : 'an ' },
-	"in" : { 'Name' : "Indiana",
-			'article' : 'an ' },
-	"ia" : { 'Name' : "Iowa",
-			'article' : 'an ' },
-	"ks" : { 'Name' : "Kansas",
-			'article' : 'a ' },
-	"ky" : { 'Name' : "Kentucky",
-			'article' : 'a ' },
-	"la" : { 'Name' : "Louisiana",
-			'article' : 'a' },
-	"me" : { 'Name' : "Maine",
-			'article' : 'a ' },
-	"md" : { 'Name' : "Maryland",
-			'article' : 'a ' },
-	"ma" : { 'Name' : "Massachusetts",
-			'article' : 'a ' },
-	"mi" : { 'Name' : "Michigan",
-			'article' : 'a ' },
-	"mn" : { 'Name' : "Minnesota",
-			'article' : 'a ' },
-	"ms" : { 'Name' : "Mississippi",
-			'article' : 'a ' },
-	"mo" : { 'Name' : "Missouri",
-			'article' : 'a ' },
-	"mt" : { 'Name' : "Montana",
-			'article' : 'a ' },
-	"ne" : { 'Name' : "Nebraska",
-			'article' : 'a ' },
-	"nv" : { 'Name' : "Nevada",
-			'article' : 'a ' },
-	"nh" : { 'Name' : "New Hampshire",
-			'article' : 'a ' },
-	"nj" : { 'Name' : "New Jersey",
-			'article' : 'a ' },
-	"nm" : { 'Name' : "New Mexico",
-			'article' : 'a ' },
-	"ny" : { 'Name' : "New York",
-			'article' : 'a ' },
-	"nc" : { 'Name' : "North Carolina",
-			'article' : 'a ' },
-	"nd" : { 'Name' : "North Dakota",
-			'article' : 'a ' },
-	"oh" : { 'Name' : "Ohio",
-			'article' : 'an ' },
-	"ok" : { 'Name' : "Oklahoma",
-			'article' : 'an ' },
-	"or" : { 'Name' : "Oregon",
-			'article' : 'an ' },
-	"pa" : { 'Name' : "Pennsylvania",
-			'article' : 'a ' },
-	"ri" : { 'Name' : "Rhode Island",
-			'article' : 'a ' },
-	"sc" : { 'Name' : "South Carolina",
-			'article' : 'a ' },
-	"sd" : { 'Name' : "South Dakota",
-			'article' : 'a ' },
-	"tn" : { 'Name' : "Tennessee",
-			'article' : 'a ' },
-	"tx" : { 'Name' : "Texas",
-			'article' : 'a ' },
-	"ut" : { 'Name' : "Utah",
-			'article' : 'a ' },
-	"vt" : { 'Name' : "Vermont",
-			'article' : 'a ' },
-	"va" : { 'Name' : "Virginia",
-			'article' : 'a ' },
-	"wa" : { 'Name' : "Washington",
-			'article' : 'a ' },
-	"wv" : { 'Name' : "West Virginia",
-			'article' : 'a ' },
-	"wi" : { 'Name' : "Wisconsin",
-			'article' : 'a ' },
-	"wy" : { 'Name' : "Wyoming",
-			'article' : 'a ' }
-};
-
 $(document).ready(function () {
 	var residencySelected = false;
 	$('.question').change(function () {
-		updateCarryInfo();
+		updateCarryInfo(statePolicy);
 	});
 	$('#residencyInitial').change(function () {
 		$("#residency").val($("#residencyInitial option:selected").val());
-		updateCarryInfo();
+		updateCarryInfo(statePolicy);
 		residencySelected = true;
 		$("#dialogInit").dialog('close');
 	})
@@ -124,23 +19,17 @@ $(document).ready(function () {
 		width: $(window).width() * 0.9,
 	});
 	$(".noNonresPermitsDialog").dialog({
-		open: function(e, f, g) {
+		open: function(event, whoknows) {
 			var state = $(this).data('state');
 			var residency = $('#residency').val();
 			$('input[value='+state+']').prop('checked', false);
-			updateCarryInfo();
+			updateCarryInfo(statePolicy);
 			if(residency === state)
 			{
-				console.log(state)
 				$('input[value='+state+']').prop('checked', true);
-				console.log("propchecked");
-				updateCarryInfo();
+				updateCarryInfo(statePolicy);
 				$(this).dialog('close');
 			}
-//			console.log($(this));
-//			console.log(e);
-//			console.log(f);
-//			console.log(g);
 		},
 		autoOpen: false,
 		modal: true,
@@ -155,16 +44,18 @@ $(document).ready(function () {
 				click: function (e) {
 					var state = $(this).data('state');
 					$('input[value='+state+']').prop('checked', true);
-					updateCarryInfo();
+					updateCarryInfo(statePolicy);
 					$(this).dialog('close');
 				}
 		}]
 	});
-	$(".question").click(function () {
+	$(".stateQuestion").click(function () {
 		if($(this).prop('checked')) {
 			var stateCode = $(this).attr('value');
-			if($('#'+stateCode+'Dialog').length) {
-				$('#'+stateCode+'Dialog').dialog('open');
+			var stateDialogText = statePolicy[stateCode].dialogText
+			if(stateDialogText != "") {
+				$('#stateDialog').html(stateDialogText);
+				$('#stateDialog').dialog('open');
 			}
 		}
 	});
@@ -180,14 +71,13 @@ $(document).ready(function () {
 		onRegionClick: function(event, code, region) {
 			var infoCode = '#' + code + "Info";
 			$(infoCode).dialog('open');
-			console.log(infoCode);
 			event.preventDefault();
 		},
 		onLabelShow: function(event, label, code) {
-				label.html('<div class="map-tooltip" id="az-tooltip"><h3 class="header" align="center">' + policy[code].Name + ' - Click for More Info</h3><p class="description">' + policy[code].Policy + '</p></div>');
+				label.html('<div class="map-tooltip" id="az-tooltip"><h3 class="header" align="center">' + statePolicy[code].stateName + ' - Click for More Info</h3><p class="description">' + statePolicy[code].Policy + '</p></div>');
 		}
 	});
-	updateCarryInfo();
+	updateCarryInfo(statePolicy);
 });
 
 function findResidentPermits(residency, permitsHeld, permitsAccepted) {
@@ -202,13 +92,11 @@ function findResidentPermits(residency, permitsHeld, permitsAccepted) {
 		}
 		if($.inArray(residency, permitsAccepted) > -1) {
 			if($.inArray(residency, permitsHeld) > -1) {
-				console.log(residency, permitsHeld, permitsAccepted)
 				residenceFound = residency
 				return false;
 			}
 		}
 	})
-	console.log(residenceFound, residency)
 	if (residenceFound === residency) {
 		return residency;
 	}
@@ -216,19 +104,29 @@ function findResidentPermits(residency, permitsHeld, permitsAccepted) {
 }
 
 function stateNameFromAbbr(abbr) {
-	return policy[abbr].Name;
+	return statePolicy[abbr].stateName;
+}
+
+function isEmptyArray(myObject) {
+	if (typeof myObject === "object") {
+		if(myObject.length === 0) {
+			return true;
+		}
+	}
+	return false;
 }
 
 function validAge (ageRequirement, over21) {
-	if(over21 === 'over21') return true;
-
-	if(ageRequirement === 'of any age') return true;
-
-	if(ageRequirement === 'over 18' && over21 === 'over18') return true;
-
-	if(ageRequirement === 'over 16' && over21 === 'over18' ||
-		ageRequirement === 'over 16' && over21 === 'over16') return true;
-
+	console.log(ageRequirement, over21)
+	if(typeof ageRequirement === "number" &&
+		typeof over21 === "number" &&
+		over21 > 1 &&
+		over21 >= ageRequirement) {
+		return true;
+	}
+	else if (typeof ageRequirement === "undefined") {
+		return true;
+	}
 	return false;
 }
 function getAcceptedList(permitsAccepted, permitsOwned) {
@@ -275,5 +173,86 @@ function legalize(oldLevel, newLevel, oldMessage, newMessage) {
 		newMessage = oldMessage + " " + newMessage;
 	}
 	return newMessage.trim();
+}
+
+function validateCarry(ourPolicy, residency, permitsOwned, over21) {
+	var state        = ourPolicy.stateAbbr
+	var longState    = stateNameFromAbbr(state)
+
+	if(residency === undefined || residency === "") {
+		longResState = undefined
+	}
+	else {
+		var longResState = stateNameFromAbbr(residency)
+	}
+	var permitted    = {"constitutional" : 0,
+						"permit"         : 0,
+						"reciprocity"    : 0,
+						"message"		 : ""}
+	var disqualified = false
+
+	if($.inArray(state, permitsOwned) > -1) {
+		if(residency !== state &&
+		   ourPolicy.issuesNonresidentPermits === false) {
+			permitted.permit = "Conflict"
+			permitted.Pmessage = longState + ' does not issue nonresident permits. You have indicated that you reside in ' +
+								longResState + '. This data presents an apparent conflict. Proceed with caution.'
+		}
+		else {
+			if(validAge(ourPolicy.ageForPermit, over21)) {
+				permitted.permit = 1
+				permitted.Pmessage = 'You indicated that you have a ' + longState + ' permit.'
+			}
+			else {
+				permitted.permit = "Conflict"
+				permitted.Pmessage = 'You indicated that you have a ' + longState + ' permit. According to our data, ' +
+									longState + ' does not issue permits to persons under ' + ourPolicy.ageForPermit + '.'
+			}
+		}
+	}
+	if(ourPolicy.constitutionalCarry) {
+		if(ourPolicy.constitutionalCarry === true) {
+			if(over21 >= ourPolicy.constitutionalCarryAge) {
+				permitted.constitutional = 1
+				permitted.Cmessage = longState + " has Constitutional Carry."
+			}
+			else {
+				permitted.Cmessage = longState + " has Constitutional Carry for persons over " + ourPolicy.constitutionalCarryAge + "."
+			}
+		}
+	}
+	if(typeof ourPolicy.reciprocity === "object")
+		console.log(state, typeof(ourPolicy.reciprocity), ourPolicy.reciprocity)
+	else 
+		console.log(state, typeof(ourPolicy.reciprocity))
+	if(ourPolicy.reciprocity &&
+		permitsOwned.length > 0 ) {
+		if(ourPolicy.reciprocity === true) {
+
+		}
+		else if (typeof ourPolicy.reciprocity === "object") {
+
+		}
+	}
+
+	// Decisions over. Coloring time.
+	statePolicy[state].Policy = permitted.message
+	if(permitted.constitutional === "Conflict" ||
+	   permitted.permit         === "Conflict" ||
+	   permitted.reciprocity    === "Conflict") {
+		colorState("Conflict", state)
+	}
+	else if (permitted.permit === 1 &&
+			 disqualified === false) {
+		colorState(2, state)
+	}
+	else if ((permitted.constitutional === 1 ||
+			  permitted.reciprocity    === 1) &&
+			  disqualified === false) {
+		colorState(1, state)
+	}
+	else {
+		colorState(0, state)
+	}
 
 }

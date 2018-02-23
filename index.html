@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="jqvmap/dist/jqvmap.css" media="screen">
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js" type="text/javascript"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js" type="text/javascript"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js" type="text/javascript"></script>
 
 <script src="jqvmap/dist/jquery.vmap.js" type="text/javascript"></script>
@@ -21,66 +21,68 @@
 <div id="vmap" style="width:800px; height:500px; margin-left:auto; margin-right: auto;"></div>
 <div style="clear:both; margin-left:auto; margin-right: auto;">Select which permits you own.</div>
 <div class="permits">
-	<div><input type="checkbox" class="question" name="permits" value="al">Alabama</div>
-	<div><input type="checkbox" class="question" name="permits" value="ak">Alaska</div>
-	<div><input type="checkbox" class="question" name="permits" value="az">Arizona</div>
-	<div><input type="checkbox" class="question" name="permits" value="ar">Arkansas</div>
-	<div><input type="checkbox" class="question" name="permits" value="ca">California</div>
-	<div><input type="checkbox" class="question" name="permits" value="co">Colorado</div>
-	<div><input type="checkbox" class="question" name="permits" value="ct">Connecticut</div>
-	<div><input type="checkbox" class="question" name="permits" value="de">Delaware</div>
-	<div><input type="checkbox" class="question" name="permits" value="dc">District of Columbia</div>
-	<div><input type="checkbox" class="question" name="permits" value="fl">Florida</div>
-	<div><input type="checkbox" class="question" name="permits" value="ga">Georgia</div>
-	<div><input type="checkbox" class="question" name="permits" value="hi">Hawaii</div>
-	<div><input type="checkbox" class="question" name="permits" value="id">Idaho</div>
-	<div><input type="checkbox" class="question" name="permits" value="il">Illinois</div>
-	<div><input type="checkbox" class="question" name="permits" value="in">Indiana</div>
-	<div><input type="checkbox" class="question" name="permits" value="ia">Iowa</div>
-	<div><input type="checkbox" class="question" name="permits" value="ks">Kansas</div>
-	<div><input type="checkbox" class="question" name="permits" value="ky">Kentucky</div>
-	<div><input type="checkbox" class="question" name="permits" value="la">Louisiana</div>
-	<div><input type="checkbox" class="question" name="permits" value="me">Maine</div>
-	<div><input type="checkbox" class="question" name="permits" value="md">Maryland</div>
-	<div><input type="checkbox" class="question" name="permits" value="ma">Massachusetts</div>
-	<div><input type="checkbox" class="question" name="permits" value="mi">Michigan</div>
-	<div><input type="checkbox" class="question" name="permits" value="mn">Minnesota</div>
-	<div><input type="checkbox" class="question" name="permits" value="ms">Mississippi</div>
-	<div><input type="checkbox" class="question" name="permits" value="mo">Missouri</div>
-	<div><input type="checkbox" class="question" name="permits" value="mt">Montana</div>
-	<div><input type="checkbox" class="question" name="permits" value="ne">Nebraska</div>
-	<div><input type="checkbox" class="question" name="permits" value="nv">Nevada</div>
-	<div><input type="checkbox" class="question" name="permits" value="nh">New Hampshire</div>
-	<div><input type="checkbox" class="question" name="permits" value="nj">New Jersey</div>
-	<div><input type="checkbox" class="question" name="permits" value="nm">New Mexico</div>
-	<div><input type="checkbox" class="question" name="permits" value="ny">New York</div>
-	<div><input type="checkbox" class="question" name="permits" value="nc">North Carolina</div>
-	<div><input type="checkbox" class="question" name="permits" value="nd">North Dakota</div>
-	<div><input type="checkbox" class="question" name="permits" value="oh">Ohio</div>
-	<div><input type="checkbox" class="question" name="permits" value="ok">Oklahoma</div>
-	<div><input type="checkbox" class="question" name="permits" value="or">Oregon</div>
-	<div><input type="checkbox" class="question" name="permits" value="pa">Pennsylvania</div>
-	<div><input type="checkbox" class="question" name="permits" value="ri">Rhode Island</div>
-	<div><input type="checkbox" class="question" name="permits" value="sc">South Carolina</div>
-	<div><input type="checkbox" class="question" name="permits" value="sd">South Dakota</div>
-	<div><input type="checkbox" class="question" name="permits" value="tn">Tennessee</div>
-	<div><input type="checkbox" class="question" name="permits" value="tx">Texas</div>
-	<div><input type="checkbox" class="question" name="permits" value="ut">Utah</div>
-	<div><input type="checkbox" class="question" name="permits" value="vt">Vermont</div>
-	<div><input type="checkbox" class="question" name="permits" value="va">Virginia</div>
-	<div><input type="checkbox" class="question" name="permits" value="wa">Washington</div>
-	<div><input type="checkbox" class="question" name="permits" value="wv">West Virginia</div>
-	<div><input type="checkbox" class="question" name="permits" value="wi">Wisconsin</div>
-	<div><input type="checkbox" class="question" name="permits" value="wy">Wyoming</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="al">Alabama</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="ak">Alaska</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="az">Arizona</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="ar">Arkansas</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="ca">California</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="co">Colorado</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="ct">Connecticut</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="de">Delaware</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="dc">District of Columbia</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="fl">Florida</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="ga">Georgia</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="hi">Hawaii</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="id">Idaho</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="il">Illinois</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="in">Indiana</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="ia">Iowa</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="ks">Kansas</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="ky">Kentucky</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="la">Louisiana</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="me">Maine</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="md">Maryland</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="ma">Massachusetts</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="mi">Michigan</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="mn">Minnesota</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="ms">Mississippi</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="mo">Missouri</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="mt">Montana</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="ne">Nebraska</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="nv">Nevada</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="nh">New Hampshire</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="nj">New Jersey</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="nm">New Mexico</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="ny">New York</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="nc">North Carolina</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="nd">North Dakota</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="oh">Ohio</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="ok">Oklahoma</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="or">Oregon</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="pa">Pennsylvania</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="ri">Rhode Island</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="sc">South Carolina</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="sd">South Dakota</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="tn">Tennessee</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="tx">Texas</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="ut">Utah</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="vt">Vermont</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="va">Virginia</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="wa">Washington</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="wv">West Virginia</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="wi">Wisconsin</div>
+	<div><input type="checkbox" class="question stateQuestion" name="permits" value="wy">Wyoming</div>
 </div>
 
 <div class="below">
-	<p>Are you over 21?
-	<input type="radio" class="question" name="q21" value="over21" checked="checked" />Yes
-	<input type="radio" class="question" name="q21" value="over18" />At least 18 but not over 21
-	<input type="radio" class="question" name="q21" value="over16" />At least 16 but not over 18
-	<input type="radio" class="question" name="q21" value="under16" />Under 16</p>
-	
+	<p>How old are you?
+	<input type="radio" class="question" name="q21" value="21" checked="checked" />Over 21
+	<input type="radio" class="question" name="q21" value="19" />19 or 20
+	<input type="radio" class="question" name="q21" value="18" />18
+	<input type="radio" class="question" name="q21" value="16" />16 or 17
+	<input type="radio" class="question" name="q21" value="14" />14 or 15
+	<input type="radio" class="question" name="q21" value="2" />Under 14</p>
+
 	<p>Are you a US citizen?
 	<input type="radio" class="question" name="citizen" value="usCitizen" checked="checked" />Yes
 	<input type="radio" class="question" name="citizen" value="nonCitizen" />No</p>
@@ -92,7 +94,7 @@
 	<input type="radio" class="question" name="afService" value="dishonor" />Dishonorably discharged
 	<input type="radio" class="question" name="afService" value="honor" />Honorably discharged
 	</p>
-	
+
 	<p>In what state do you live (where is your driver's license / other photo ID)?
 	<select class="question" id="residency">
 		<option value=""></option>
@@ -211,43 +213,7 @@
 		<option value="wy">Wyoming</option>
 	</select>
 </div>
-<div id="alDialog" class="noNonresPermitsDialog" data-state="al">Alabama honors all other states' permits, but it does not issue nonresident permits.</div>
-<div id="akDialog" class="noNonresPermitsDialog" data-state="ak">Alaska has constitutional carry for people over 21, but it does not issue nonresident permits.</div>
-<div id="arDialog" class="noNonresPermitsDialog" data-state="ar">Arkansas honors all other states' permits, but it does not issue nonresident permits.</div>
-<div id="caDialog" class="noNonresPermitsDialog" data-state="ca">California does not honor any other states' permits, and it does not issue nonresident permits.</div>
-<div id="coDialog" class="noNonresPermitsDialog" data-state="co">Colorado honors select permits if the person resides in the state of issuance. It only gives nonresident permits to people who have property or businesses in Colorado, or members of the military.</div>
-<div id="dcDialog" class="noNonresPermitsDialog" data-state="dc">DC does not honor any other states' permits. It only issues up to two-year permits to applicants who have "good reason to fear injury to his or her person or property or has any other proper reason for carrying a pistol". In practice, DC is no-issue.</div>
-<div id="deDialog" class="noNonresPermitsDialog" data-state="de">Delaware honors 21 states' permits. It only issues 30-day temporary licenses to nonresidents. "No individual shall be issued more than 3 temporary licenses."</div>
-<div id="gaDialog" class="noNonresPermitsDialog" data-state="ga">Georgia honors 32 states' permits. It does not issue nonresident permits.</div>
-<div id="hiDialog" class="noNonresPermitsDialog" data-state="hi">Hawaii does not honor any other states' permits, and it does not issue nonresident permits. It is a may-issue state that is no-issue in practice.</div>
-<div id="ilDialog" class="noNonresPermitsDialog" data-state="il">Illinois does not honor any others states' permits. The Illinois State Police have stated that they will only issue nonresident permits to residents of Arkansas, Mississippi, Texas, and Virginia.</div>
-<div id="inDialog" class="noNonresPermitsDialog" data-state="in">Indiana honors all other states' permits. It will only issue nonresident permits to an applicant who "has a regular place of business or employment in Indiana".</div>
-<div id="iaDialog" class="noNonresPermitsDialog" data-state="ia">Iowa honors all other states' permits, but it will only issue a nonresident permit to law enforcement officers and "other nonresidents with a demonstrable viable threat to themselves or their family as verified by a law enforcement agency in the jurisdiction where the threat occurred".</div>
-<div id="ksDialog" class="noNonresPermitsDialog" data-state="ks">Kansas has constitutional carry, but it does not issue nonresident permits.</div>
-<div id="kyDialog" class="noNonresPermitsDialog" data-state="ky">Kentucky honors all other states' permits, but it only gives nonresident permits to members of the Armed Forces who have already been assigned to posts in Kentucky for at least 6 months.</div>
-<div id="laDialog" class="noNonresPermitsDialog" data-state="la">Louisiana honors 37 states' permits. It does not issue nonresident permits.</div>
-<div id="mdDialog" class="noNonresPermitsDialog" data-state="md">Maryland does not honor any other states' permits. It is a "may-issue" state; close to "no-issue" in practice. A Maryland permit is nearly impossible for the average person to acquire. You must show cause, which includes police reports, and even then it is a toss-up. Be very sure you want to select Maryland.</div>
-<div id="maDialog" class="noNonresPermitsDialog" data-state="ma">Massachusetts does not honor any other states' permits. A Massachusetts permit requires an appearance in person at the Firearms Records Bureau in Chelsea, MA. Massachusetts is "may-issue"; nonresident permits are rarely issued.</div>
-<div id="miDialog" class="noNonresPermitsDialog" data-state="mi">Michigan honors all other states' permits if you are a resident of that state, but it does not issue nonresident permits.</div>
-<div id="msDialog" class="noNonresPermitsDialog" data-state="ms">Mississippi has constitutional carry for anyone over 21 in a holster or bag, but it does not issue nonresident permits. Beware of "pocket carrying" or other styles of carrying in Mississippi; it's illegal.</div>
-<div id="moDialog" class="noNonresPermitsDialog" data-state="mo">Missouri has constitutional carry for anyone over 18, but it does not issue nonresident permits.</div>
-<div id="mtDialog" class="noNonresPermitsDialog" data-state="mt">Montana honors 43 states' permits. It does not issue nonresident permits.</div>
-<div id="neDialog" class="noNonresPermitsDialog" data-state="ne">Nebraska honors 38 states' permits. It does not issue nonresident permits.</div>
-<div id="njDialog" class="noNonresPermitsDialog" data-state="nj">New Jersey is a "may-issue" state; close to "no-issue" in practice. A New Jersey permit is nearly impossible for the average person to acquire. Be very sure you want to select New Jersey.</div>
-<div id="nmDialog" class="noNonresPermitsDialog" data-state="nm">New Mexico honors 24 states' permits. It does not issue nonresident permits.</div>
-<div id="nyDialog" class="noNonresPermitsDialog" data-state="ny">New York does not honor any other states' permits. It does not issue nonresident permits.</div>
-<div id="ncDialog" class="noNonresPermitsDialog" data-state="nc">North Carolina honors all other states' permits. It does not issue nonresident permits.</div>
-<div id="ohDialog" class="noNonresPermitsDialog" data-state="oh">Ohio honors all other states' permits. It only issues nonresident permits to people employed in Ohio. It also can issue an emergency license to people with a "justifiable need."</div>
-<div id="okDialog" class="noNonresPermitsDialog" data-state="ok">In addition to honoring all other states' permits, Oklahoma honors constitutional carry for residents of certain constitutional carry states. It does not issue nonresident permits.</div>
-<div id="orDialog" class="noNonresPermitsDialog" data-state="or">Oregon does not honor any other states' permits. It shall issue a permit to residents of states that border Oregon, or people who own or lease property in Oregon, but does not issue nonresident permits to residents of other states without owning property in Oregon.</div>
-<div id="riDialog" class="noNonresPermitsDialog" data-state="ri">Rhode Island does not honor any other states' permits. Nonresident permits are rarely issued.</div>
-<div id="scDialog" class="noNonresPermitsDialog" data-state="sc">South Carolina honors permits from 23 states where the licensee is a resident of the issuing state. South Carolina will only issue nonresident permits to South Carolina landowners.</div>
-<div id="sdDialog" class="noNonresPermitsDialog" data-state="sd">While South Dakota honors all other states' permits, it does not itself issue nonresident permits.</div>
-<div id="tnDialog" class="noNonresPermitsDialog" data-state="tn">Tennessee only issues permits to nonresidents employed in Tennessee for six months or more. While it honors all other states' permits, if it denies a permit, the applicant's privilege to carry in Tennessee is revoked regardless of what concealed carry permits he holds.</div>
-<div id="vtDialog" class="noNonresPermitsDialog" data-state="vt">Vermont does not issue concealed carry permits to anyone, resident or nonresident. It is forbidden by its state constitution from restricting or regulating the rights of its citizens to bear arms.</div>
-<div id="wvDialog" class="noNonresPermitsDialog" data-state="wv">West Virginia has constitutional carry. It does not issue nonresident permits.</div>
-<div id="wiDialog" class="noNonresPermitsDialog" data-state="wi">Wisconsin honors 43 states' permits. It does not issue nonresident permits.</div>
-<div id="wyDialog" class="noNonresPermitsDialog" data-state="wy">Wyoming has constitutional carry for its residents. It honors any other states' permits. It does not issue nonresident permits.</div>
+<div id="stateDialog" class="noNonresPermitsDialog"></div>
 
 <div id="alInfo" class="stateInfo" data-state="al" title="Alabama Concealed Carry Laws">
 	<h4>Permits Alabama Honors</h4><div>
