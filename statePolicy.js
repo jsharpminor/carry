@@ -60,10 +60,6 @@ function constitutionalCarry(statePolicy) {
 	}
 }
 
-function calculateLegality() {
-
-}
-
 statePolicy = {}
 statePolicy['al'] = { "stateAbbr" : "al",
 					  "stateName" : "Alabama",
@@ -80,7 +76,7 @@ statePolicy['al'] = { "stateAbbr" : "al",
 statePolicy['ak'] = { "stateAbbr" : "ak",
 					  "stateName" : "Alaska",
 						"article" : "an",
-			"constitutionalCarry" : false,
+			"constitutionalCarry" : true,
 				   "ageForPermit" : 21,
 				 "reciprocityAge" : 21,
 		 "constitutionalCarryAge" : 21,
@@ -92,6 +88,7 @@ statePolicy['az'] = { "stateAbbr" : "az",
 						"article" : "an",
 			"constitutionalCarry" : true,
 				   "ageForPermit" : 21,
+				   "reciprocity" : true,
 				 "reciprocityAge" : 21,
 		 "constitutionalCarryAge" : 21,
 	   "issuesNonresidentPermits" : true,
@@ -174,7 +171,7 @@ statePolicy['fl'] = { "stateAbbr" : "fl",
 									 'tx', 'ut', 'va', 'wv', 'wy'],
 	  "acceptsNonresidentPermits" : "does not honor nonresident permits",
 		"residentsMustPermitHere" : false,
-	   "issuesNonresidentPermits" : false,
+	   "issuesNonresidentPermits" : true,
 					 "dialogText" : ""}
 
 statePolicy['ga'] = { "stateAbbr" : "ga",
