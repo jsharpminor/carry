@@ -1,5 +1,7 @@
 $(document).ready(function () {
 	var residencySelected = false;
+	var permitsOwned = [];
+	permitsAccepted = [];
 	$('.question').change(function () {
 		updateCarryInfo(statePolicy);
 	});
@@ -39,7 +41,7 @@ $(document).ready(function () {
 				click: function(e, f) {
 					var state = $(this).data('state');
 					$('input[value='+state+']').prop('checked', false);
-					console.log(state)
+//					console.log(state)
 					$(this).dialog('close');
 				}
 			}, {
@@ -85,9 +87,6 @@ $(document).ready(function () {
 });
 
 
-
-
-
 function isEmptyArray(myObject) {
 	if (typeof myObject === "object") {
 		if(myObject.length === 0) {
@@ -127,9 +126,7 @@ function stateNameFromAbbr(abbr) {
 	return statePolicy[abbr].stateName;
 }
 
-
-
-function findResidentPermits(residency, permitsHeld, permitsAccepted) {
+/*function findResidentPermits(residency, permitsHeld, permitsAccepted) {
 	var residenceFound = false;
 	// Check to see if the user even has a resident permit. Resident permit being defined as 
 	// holding a permit in the state where the user has residence.
@@ -150,9 +147,9 @@ function findResidentPermits(residency, permitsHeld, permitsAccepted) {
 		return residency;
 	}
 	return false;
-}
+}*/
 function validAge (ageRequirement, over21) {
-	console.log(ageRequirement, over21)
+//	console.log(ageRequirement, over21)
 	if(typeof ageRequirement === "number" &&
 		typeof over21 === "number" &&
 		over21 > 1 &&
@@ -201,105 +198,4 @@ function legalize(oldLevel, newLevel, oldMessage, newMessage) {
 		newMessage = oldMessage + " " + newMessage;
 	}
 	return newMessage.trim();
-}
-
-function validateCarry(ourPolicy, residency, permitsOwned, over21) {
-	var state        = ourPolicy.stateAbbr
-	var longState    = stateNameFromAbbr(state)
-	if(residency === undefined || residency === "") {
-		longResState = undefined
-	}
-	else {
-		var longResState = stateNameFromAbbr(residency)
-	}
-	var permitted    = {"constitutional" : 0,
-						"permit"         : 0,
-						"reciprocity"    : 0,
-						"Cmessage"		 : "",
-						"Rmessage"		 : "",
-						"Pmessage"		 : ""}
-	var disqualified = false
-
-// Mark as "permitted" if you have our permit.
-	if($.inArray(state, permitsOwned) > -1) {
-		if(residency !== state &&
-		   ourPolicy.issuesNonresidentPermits === false) {
-			permitted.permit = "Conflict"
-			permitted.Pmessage = longState + ' does not issue nonresident permits. You have indicated that you reside in ' +
-								longResState + '. This data presents an apparent conflict. Proceed with caution.'
-		}
-		else {
-			if(validAge(ourPolicy.ageForPermit, over21)) {
-				permitted.permit = 1
-				permitted.Pmessage = 'You indicated that you have a ' + longState + ' permit.'
-			}
-			else {
-				permitted.permit = "Conflict"
-				permitted.Pmessage = 'You indicated that you have a ' + longState + ' permit. According to our data, ' +
-									longState + ' does not issue permits to persons under ' + ourPolicy.ageForPermit + '.'
-			}
-		}
-	}
-// Mark as "permitted" if we have Constitutional Carry.
-	if(ourPolicy.constitutionalCarry) {
-		if(ourPolicy.constitutionalCarry === true) {
-			if(over21 >= ourPolicy.constitutionalCarryAge) {
-				permitted.constitutional = 1
-				permitted.Cmessage       = longState + " has Constitutional Carry."
-			}
-			else {
-				permitted.Cmessage = longState + " has Constitutional Carry for persons over " + ourPolicy.constitutionalCarryAge + "."
-			}
-		}
-	}
-// Mark as "permitted" if we have reciprocity with your state, or
-					// if we have general reciprocity.
-	if(ourPolicy.reciprocity &&
-		permitsOwned.length > 0 ) {
-		if(residency === state &&
-			ourPolicy.residentsMustPermitHere) {
-			permitted.Rmessage = ""
-
-		}
-		else {
-			if(ourPolicy.reciprocity === true) {
-				permitted.Rmessage    = longState + " accepts all permits."
-				permitted.reciprocity = 1
-			}
-			else if (typeof ourPolicy.reciprocity === "object") {
-				if(acceptedList = getAcceptedList(ourPolicy.reciprocity, permitsOwned)) {
-					permitted.Rmessage    = longState + " honors your " + acceptedList;
-					permitted.reciprocity = 1
-				}
-			}
-		}
-	}
-	else if (ourPolicy.reciprocity === false ||
-			ourPolicy.reciprocity === undefined) {
-		permitted.Rmessage = longState + " does not honor any other states' permits."
-	// longState + " does not honor any other states' permits, and it does not issue nonresident permits."
-	// longState + " does not honor permits from your home state of " + longResState + ", and it does not honor nonresident permits."
-	// longState + " does not honor permits from any of the states"
-	}
-	permitted.message = permitted.Cmessage + " " + permitted.Rmessage + " " + permitted.Pmessage
-	// Decisions over. Coloring time.
-	statePolicy[state].Policy = permitted.message
-	if(permitted.constitutional === "Conflict" ||
-	   permitted.permit         === "Conflict" ||
-	   permitted.reciprocity    === "Conflict") {
-		colorState("Conflict", state)
-	}
-	else if (permitted.permit === 1 &&
-			 disqualified === false) {
-		colorState(2, state)
-	}
-	else if ((permitted.constitutional === 1 ||
-			  permitted.reciprocity    === 1) &&
-			  disqualified === false) {
-		colorState(1, state)
-	}
-	else {
-		colorState(0, state)
-	}
-
 }

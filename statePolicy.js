@@ -3,11 +3,15 @@ function updateCarryInfo(statePolicy) {
 	var over21 = Number($('input[name=q21]:checked').val());
 	var residency = $('#residency').val();
 	var citizen = $('input[name=citizen]:checked').val();
-	var permitsOwned = $('input[name=permits]:checked').map(function () {
+	permitsOwned = $('input[name=permits]:checked').map(function () {
 		return $(this).val();
 	}).get();
+	$.each(permitsOwned, function(index, value) {
+		validatePermit(index, value)
+//		console.log(permitsOwned[index])
+	})
 	$.each(statePolicy, function(state, Policy) {
-		validateCarry(Policy, residency, permitsOwned, over21)
+		validateCarry(Policy, residency, over21)
 	});
 }
 
@@ -200,7 +204,7 @@ statePolicy['hi'] = { "stateAbbr" : "hi",
 statePolicy['id'] = { "stateAbbr" : "id",
 					  "stateName" : "Idaho",
 						"article" : "an",
-			"constitutionalCarry" : "constitutional carry for residents",
+			"constitutionalCarry" : "residents",
 				   "ageForPermit" : 21,
 		 "constitutionalCarryAge" : 21,
 					"reciprocity" : true,
@@ -454,7 +458,7 @@ statePolicy['oh'] = { "stateAbbr" : "oh",
 statePolicy['ok'] = { "stateAbbr" : "ok",
 					  "stateName" : "Oklahoma",
 						"article" : "an",
-			"constitutionalCarry" : "constitutional carry for certain residents",
+			"constitutionalCarry" : "certain residents",
 		 "constitutionalCarryAge" : 21,
 		"constitutionalCarryList" : ["ak", "az", "id", "me", "ms",  "mo", "nh", "vt", "wv", "wy"],
 				   "ageForPermit" : 21,
@@ -479,8 +483,7 @@ statePolicy['pa'] = { "stateAbbr" : "pa",
 					"reciprocity" : ['ak', 'az', 'ar', 'co', 'fl',  'ga', 'in', 'ia', 'ks', 'ky',
 									 'la', 'mi', 'ms', 'mo', 'mt',  'nc', 'nd', 'oh', 'ok', 'sd',
 									 'tn', 'tx', 'ut', 'va', 'wv',  'wi', 'wy'],
-	  "acceptsNonresidentPermits" : true,
-		"residentsMustPermitHere" : false,
+	  "acceptsNonresidentPermits" : false,
 					 "dialogText" : ""}
 
 statePolicy['ri'] = { "stateAbbr" : "ri",
@@ -499,7 +502,7 @@ statePolicy['sc'] = { "stateAbbr" : "sc",
 					"reciprocity" : ['ak', 'az', 'ar', 'fl', 'ga',  'id', 'ks', 'ky', 'la', 'mi',
 									 'ms', 'mo', 'nm', 'nc', 'nd',  'oh', 'ok', 'sd', 'tn', 'tx',
 									 'va', 'wv', 'wy'],
-	  "acceptsNonresidentPermits" : "does not honor nonresident permits",
+	  "acceptsNonresidentPermits" : false,
 		"residentsMustPermitHere" : true,
 					 "dialogText" : "South Carolina honors permits from 23 states where the licensee is a resident of the issuing state. South Carolina will only issue nonresident permits to South Carolina landowners."}
 
@@ -531,8 +534,8 @@ statePolicy['tx'] = { "stateAbbr" : "tx",
 					"reciprocity" : ['al', 'ak', 'az', 'ar', 'ca',  'co', 'ct', 'de', 'fl', 'ga',
 									 'hi', 'id', 'il', 'in', 'ia',  'ks', 'ky', 'la', 'md', 'ma',
 									 'mi', 'mo', 'ms', 'mt', 'ne',  'nv', 'nj', 'nm', 'ny', 'nc',
-									 'nd', 'oh', 'ok', 'pa', 'ri',  'sc', 'sd', 'tn', 'tx', 'ut',
-									 'va', 'wv', 'wy'],
+									 'nd', 'oh', 'ok', 'pa', 'ri',  'sc', 'sd', 'tn', 'ut', 'va',
+									 'wa', 'wv', 'wy'],
 	  "acceptsNonresidentPermits" : true,
 		"residentsMustPermitHere" : true,
 					 "dialogText" : ""}
@@ -604,7 +607,7 @@ statePolicy['wi'] = { "stateAbbr" : "wi",
 statePolicy['wy'] = { "stateAbbr" : "wy",
 					  "stateName" : "Wyoming",
 						"article" : "a",
-			"constitutionalCarry" : "constitutional carry for residents",
+			"constitutionalCarry" : "residents",
 		 "constitutionalCarryAge" : 21,
 				   "ageForPermit" : 21,
 					"reciprocity" : ['al', 'ak', 'az', 'ar', 'co',  'fl', 'ga', 'id', 'in', 'ia',
