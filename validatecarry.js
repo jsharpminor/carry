@@ -9,7 +9,7 @@ function validateCarry(ourPolicy, residency, over21) {
 
 	var state = ourPolicy.stateAbbr
 	var carryStatus = 0
-	console.log(permitsAccepted)
+//	console.log(permitsAccepted)
 	permitsAccepted[state] = [];
 	colorState(0, state)
 
@@ -36,22 +36,19 @@ function validateConstitutionalCarry(ourPolicy, residency, state) {
 
 function validateOutOfState(ourPolicy, residency, state) {
 	$.each(permitsOwned, function(index, thisPermit) {
-		if(ourPolicy.reciprocity === true) {
+		if(thisPermit.name === state) {
+			colorState(2, state)
+		}
+		else if(ourPolicy.reciprocity === true) {
 			colorState(1, state);
 			permitsAccepted[state].push(thisPermit.name);
 		}
-		if(thisPermit.name === state) {
-			colorState(2, state)
+		else if($.isArray(ourPolicy.reciprocity)) {
+		//	if($.inArray(thisPermit.name, ourPolicy.reciprocity))
 		}
 
 	})
 /*		if (permitsOwned.length > 0) {
-	}
-	else if(ourPolicy.reciprocity === "residents") {
-		$.each(permitsOwned, function(index, value) {
-			console.log("PermitsOwned:" + value)
-//			if($.inArray(value))
-		})
 	}
 	else if ($.isArray(ourPolicy.reciprocity)) {
 		if(ourPolicy.acceptsNonresidentPermits) {
