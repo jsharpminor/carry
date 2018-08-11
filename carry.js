@@ -126,76 +126,25 @@ function stateNameFromAbbr(abbr) {
 	return statePolicy[abbr].stateName;
 }
 
-/*function findResidentPermits(residency, permitsHeld, permitsAccepted) {
-	var residenceFound = false;
-	// Check to see if the user even has a resident permit. Resident permit being defined as 
-	// holding a permit in the state where the user has residence.
-	$.each(permitsHeld, function(index, value) {
-		// Next, check to see if the user resides in a state whose permit is acceptable.
-		if(permitsAccepted === 'all') {
-			residenceFound = residency;
-			return false;
-		}
-		if($.inArray(residency, permitsAccepted) > -1) {
-			if($.inArray(residency, permitsHeld) > -1) {
-				residenceFound = residency
-				return false;
-			}
-		}
-	})
-	if (residenceFound === residency) {
-		return residency;
+function colorState(legality, state) {
+	var illegalFill = '#cc0000';
+	var permittedFill = '#009933';
+	var hasPermitFill = '#003399';
+	var conflictFill  = '#cccc00'
+
+	var permitObject = {}
+	if(legality === 2) {
+		permitObject[state] = hasPermitFill
 	}
-	return false;
-}*/
-function validAge (ageRequirement, over21) {
-//	console.log(ageRequirement, over21)
-	if(typeof ageRequirement === "number" &&
-		typeof over21 === "number" &&
-		over21 > 1 &&
-		over21 >= ageRequirement) {
-		return true;
+	else if(legality === 1) {
+		permitObject[state] = permittedFill
 	}
-	else if (typeof ageRequirement === "undefined") {
-		return true;
-	}
-	return false;
-}
-function getAcceptedList(permitsAccepted, permitsOwned) {
-	var acceptedList = [];
-	if(typeof(permitsOwned) === "string") {
-		permitsOwned = [permitsOwned]
-	}
-	$.each(permitsOwned, function(index, value) {
-		if($.inArray(value, permitsAccepted) > -1) {
-			acceptedList.push(value);
-		}
-	})
-	if(acceptedList.length === 0) {
-		return false;
-	}
-	sentenceList = stateAbbrArrayToSentence(acceptedList);
-	if(acceptedList.length > 1) {
-		sentenceList += " permits."
+	else if (legality === "Conflict") {
+		permitObject[state] = conflictFill
 	}
 	else {
-		sentenceList += " permit."
+		permitObject[state] = illegalFill
 	}
-	return sentenceList;
-}
+	$('#vmap').vectorMap('set', 'colors', permitObject)
 
-function legalize(oldLevel, newLevel, oldMessage, newMessage) {
-	if(oldLevel === 1 && newLevel === 2) {
-		newMessage = oldMessage + " " + newMessage;
-	}
-	if(oldLevel === 2 && newLevel === 2) {
-		newMessage = oldMessage + " " + newMessage;
-	}
-	if(oldLevel === 1 && newLevel === 1) {
-		newMessage = oldMessage + " " + newMessage;
-	}
-	if(oldLevel === 2 && newLevel === 1) {
-		newMessage = oldMessage + " " + newMessage;
-	}
-	return newMessage.trim();
 }
